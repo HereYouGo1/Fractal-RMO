@@ -44,4 +44,20 @@ Project_Name/
 ├── 2--(Second_Priority)/
 └── 1000--(Technical_Stuff)_(Rarely_Used)/
 
+Naming Specificity Requirements (CRITICAL):
+• Names must tell you EXACTLY what something is - no vague bullshit
+• Bad Examples:
+  - (Implementation)_(Code) - What implementation? What code?
+  - (Framework)_(Files) - Which framework? What files?
+  - (Testing)_(Stuff) - Testing what? What stuff?
+• Good Examples:
+  - (PoC)_(Full)_(System) - Proof of concept, complete system that runs
+  - (PoC)_(Python)_(Agents) - Proof of concept Python agent code
+  - (Planning)_(PA)_(Outputs) - Planning agent outputs
+• Always include:
+  - Purpose: PoC, Testing, Production, Archive, Planning, Documentation
+  - What it actually contains: Python code, Config files, Outputs, Notes
+  - Stage if relevant: Draft, Final, v1, v2
+• When in doubt, be MORE specific - I'd rather have a long clear name than a short confusing one
+
 IMPORTANT: I'm very particular about organization - if folders/files aren't organized this way, they WILL get lost and I'll be frustrated. Please follow exactly!
