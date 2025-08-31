@@ -1,7 +1,7 @@
 # 🎯 PROJECT OVERVIEW - CURRENT STATE
 ## Living Snapshot of Fractal-RMO Development
 
-[Last Updated: 2025-08-31 | 04:45 PST | By: Claude-3.5]
+[Last Updated: 2025-08-31 | 13:55 EST | By: Claude-4.1-Opus]
 
 ======================================================================
 ======================================================================
@@ -104,12 +104,12 @@
 
 ## 📂 Active Work Documentation:
 
-**PRIMARY WORK FILE:** `1--(PoC)_(Project)_(Setup)`
-- Full path: `./12--(Progress)_(Tracking)_(What)_(We)_(Did)/1--(PoC)_(Project)_(Setup)/`
+**PRIMARY WORK FILE:** `2--(Documentation)_(Update)_(Fixes)`
+- Full path: `./12--(Progress)_(Tracking)_(What)_(We)_(Did)/2--(Documentation)_(Update)_(Fixes)/`
 
 **ADDITIONAL CONTEXT NEEDED:** None currently
 
-**CURRENT PHASE:** Environment setup complete, ready to begin agent code creation
+**CURRENT PHASE:** Fixed documentation update prompt with correct paths and rules
 
 **NEXT PLANNED WORK:** Create base agent Python files in `1--(AI)_(Agents)/` folder
 
@@ -130,25 +130,25 @@
 ## Recent Work Sessions:
 
 ### 📍 Entry 3 (Latest):
-[2025-08-31 | 04:00-04:45 PST | Claude-3.5]
+[2025-08-31 | 12:29-13:55 EST | Claude-4.1-Opus]
+**WHAT:** Fixed all documentation issues and changed timezone to EST
+**WHERE:** `./12--(Progress)_(Tracking)_(What)_(We)_(Did)/` contribution guidelines and prompts
+**RESULT:** Added Session Insights rules, header timestamp rule, fixed all PST→EST
+**NEXT:** Create base agent Python files in `1--(AI)_(Agents)/`
+
+### 📍 Entry 2:
+[2025-08-31 | 12:29-13:31 EST | Claude-4.1-Opus]
+**WHAT:** Fixed broken documentation update prompt with correct paths
+**WHERE:** `./12--(Progress)_(Tracking)_(What)_(We)_(Did)/0.5--(Documentation)_(Update)_(Prompt)/`
+**RESULT:** Replaced wrong file paths, fixed memory entry order, updated validator location
+**KEY INSIGHT:** Previous agent lost context and created unusable prompt
+
+### 📍 Entry 1:
+[2025-08-31 | 07:00-07:45 EST | Claude-3.5]
 **WHAT:** Complete rewrite of documentation system with strict rules
 **WHERE:** `./12--(Progress)_(Tracking)_(What)_(We)_(Did)/` all files
 **RESULT:** Numbered rules (§1.1 format), exact templates, validator script created
-**NEXT:** Start creating agent Python code in `1--(AI)_(Agents)/`
-
-### 📍 Entry 2:
-[2025-08-31 | 03:00-04:00 PST | Claude-3.5]
-**WHAT:** Initial documentation system creation (found to be too vague)
-**WHERE:** `./12--(Progress)_(Tracking)_(What)_(We)_(Did)/`
-**RESULT:** Created 5-file system but left too much to interpretation
 **KEY INSIGHT:** LLMs need exact templates and rules, not general guidance
-
-### 📍 Entry 1:
-[2025-08-31 | 02:30-03:00 PST | Claude-3.5]
-**WHAT:** Set up Docker databases (PostgreSQL and Redis)
-**WHERE:** `./10--(Docker)_(Database)_(Setup)/`
-**RESULT:** Both databases running - PostgreSQL:5432, Redis:6379
-**KEY INSIGHT:** Docker containers provide clean, disposable database environments
 
 
 ======================================================================
@@ -164,31 +164,21 @@
 # SESSION INSIGHTS
 **[Sticky Notes - Important Realizations/Decisions]**
 
-💡 **venv Location Non-Standard**
-- Located inside numbered folder instead of project root
-- Works fine but requires full path references
-- Decision: Keep as-is since it's already working
+💡 **venv in numbered folder breaks some tools**
+- Located at `./11--(Python)_(Virtual)_(Environment)/venv/` not project root
+- Some tools expect venv at project root and fail
 
-💡 **Python 3.13 Breaking Changes**
-- Many packages that work in 3.11 fail in 3.13
+💡 **Python 3.13 breaks many packages**
 - asyncpg 0.28.0 wouldn't compile, needed 0.30.0
-- Lesson: Always check compatibility with bleeding-edge Python
+- Check compatibility before using bleeding-edge Python
 
-💡 **Context Window Management Critical**
-- Single massive documentation file would blow agent context
-- Solution: Segmented files by work section + rolling memory
-- This enables infinite project scaling
+💡 **Agent context loss creates broken references**
+- Previous agent created prompt with non-existent file paths
+- Always verify file paths exist before referencing them
 
-💡 **Docker Simplifies Database Management**
-- No system pollution from database installs
-- Easy reset with `docker-compose down -v`
-- Consistent environment across machines
-
-💡 **Documentation Needs Strict Rules for LLMs**
-- Initial version was too vague, left room for interpretation
-- LLMs are idiots - need exact templates and numbered rules
-- Created validator script to enforce compliance
-- Every decision needs IF/THEN logic, not general guidance
+💡 **Documentation validator path moved**
+- Was at `9--(Helper)_(Scripts)/` 
+- Now at `12--(Progress)_(Tracking)_(What)_(We)_(Did)/0.4--(Documentation)_(Validator)_(Script)_(BS)/`
 
 
 ======================================================================

@@ -1,7 +1,7 @@
 # ⚠️ STRICT CONTRIBUTION PROTOCOL v2.0
 ## NUMBERED RULES WITH EXACT TEMPLATES - NO INTERPRETATION ALLOWED
 
-[Protocol Version: 2.0 | Created: 2025-08-31 | 04:30 PST | By: Claude-3.5]
+[Protocol Version: 2.0 | Created: 2025-08-31 | 04:30 EST | By: Claude-3.5]
 
 **VERSION HISTORY:**
 - v2.0 (2025-08-31): Complete rewrite with numbered rules, templates, validator script
@@ -42,15 +42,15 @@ DO NOT give them README files - they auto-update those, not read them.
 # SECTION 1: TIME STAMP FORMATS (MANDATORY)
 
 ## §1.1 Work Session Time Stamps
-**TEMPLATE:** `[YYYY-MM-DD | HH:MM-HH:MM PST | Agent-Version]`
+**TEMPLATE:** `[YYYY-MM-DD | HH:MM-HH:MM EST | Agent-Version]`
 
-**GOOD EXAMPLE:** `[2025-08-31 | 14:30-16:45 PST | Claude-3.5]`
+**GOOD EXAMPLE:** `[2025-08-31 | 14:30-16:45 EST | Claude-3.5]`
 **BAD EXAMPLE:** `[Aug 31 | afternoon | Claude]`
 
 ## §1.2 Single Action Time Stamps  
-**TEMPLATE:** `[YYYY-MM-DD | HH:MM PST | Agent-Version]`
+**TEMPLATE:** `[YYYY-MM-DD | HH:MM EST | Agent-Version]`
 
-**GOOD EXAMPLE:** `[2025-08-31 | 14:30 PST | GPT-4]`
+**GOOD EXAMPLE:** `[2025-08-31 | 14:30 EST | GPT-4]`
 **BAD EXAMPLE:** `[2025-08-31 | 2:30 | GPT]`
 
 ## §1.3 Agent Name Format
@@ -75,6 +75,14 @@ DO NOT give them README files - they auto-update those, not read them.
 
 # SECTION 2: PROJECT OVERVIEW UPDATE RULES
 
+## §2.0 Header Timestamp Update (MANDATORY EVERY SESSION)
+
+**LOCATION:** Line 4 of `0.2--(Project)_(Overview)_(Current)_(State)`
+
+**TEMPLATE:** `[Last Updated: YYYY-MM-DD | HH:MM EST | By: Agent-Version]`
+
+**RULE:** Update this EVERY time you modify the Project Overview file
+
 ## §2.1 Short-Term Memory Updates (MANDATORY EVERY SESSION)
 
 **LOCATION:** `0.2--(Project)_(Overview)_(Current)_(State)` → "SHORT-TERM MEMORY" section
@@ -82,7 +90,7 @@ DO NOT give them README files - they auto-update those, not read them.
 **TEMPLATE:**
 ```
 ### 📍 Entry [1/2/3] ([Latest/Middle/Oldest]):
-[YYYY-MM-DD | HH:MM-HH:MM PST | Agent-Version]
+[YYYY-MM-DD | HH:MM-HH:MM EST | Agent-Version]
 **WHAT:** [One line description]
 **WHERE:** [Exact folder/file path]
 **RESULT:** [Specific outcome with details]
@@ -105,7 +113,35 @@ DO NOT give them README files - they auto-update those, not read them.
 **NEXT PLANNED WORK:** [Specific next action]
 ```
 
-## §2.3 Technical Setup Updates (ONLY WHEN ARCHITECTURE CHANGES)
+## §2.3 Session Insights Updates (ONLY FOR GOTCHAS AND TRAPS)
+
+**LOCATION:** `0.2--(Project)_(Overview)_(Current)_(State)` → "SESSION INSIGHTS" section
+
+**WHEN TO ADD:**
+- Discovered a non-obvious workaround or gotcha
+- Found something that breaks unexpectedly
+- Identified a trap future agents might fall into
+- Solved a confusing problem that wasn't documented
+
+**DO NOT ADD:**
+- Obvious things ("Docker runs databases" - no shit)
+- Normal progress updates (those go in memory)
+- Standard procedures (everyone knows how venv works)
+
+**TEMPLATE:**
+```
+💡 **[Brief descriptive title]**
+- [One line explaining the gotcha/issue]
+- [One line explaining the fix/workaround]
+```
+
+**RULES:**
+- These are PERMANENT - never delete
+- Keep EXTREMELY brief (2-3 lines max)
+- Only add if it would save future agents from confusion
+- Focus on the unexpected/non-obvious
+
+## §2.4 Technical Setup Updates (ONLY WHEN ARCHITECTURE CHANGES)
 
 **TRIGGER CONDITIONS:**
 - Python version change
@@ -156,7 +192,7 @@ DO NOT give them README files - they auto-update those, not read them.
 ### SUBSECTION: [Specific Descriptive Title - Not Generic]
 ----------------------------------------------------------------------
 
-[YYYY-MM-DD | HH:MM-HH:MM PST | Agent-Version]
+[YYYY-MM-DD | HH:MM-HH:MM EST | Agent-Version]
 
 **WHAT WE DID:** [One clear sentence]
 
@@ -177,7 +213,7 @@ command --with-flags
 # Expected output: [what should appear]
 ```
 
-**SESSION INSIGHT:** 
+**SESSION INSIGHTS:** 
 💡 **INSIGHT:** [Realization/learning]
 📍 **CONTEXT:** [Why this came up]
 🔄 **IMPACT:** [What changes because of this]
@@ -223,7 +259,7 @@ command --with-flags
 
 ```markdown
 ### [Specific Limitation Title]
-**Date:** YYYY-MM-DD | HH:MM PST
+**Date:** YYYY-MM-DD | HH:MM EST
 **Agent:** [Agent-Version]
 **Category:** [One from §4.1 list]
 **Severity:** [Critical/High/Medium/Low]
@@ -276,7 +312,7 @@ command --with-flags
 ```markdown
 # [Folder Name] - What's In This Folder
 
-[Last Updated: YYYY-MM-DD | HH:MM PST | By: Agent-Version]
+[Last Updated: YYYY-MM-DD | HH:MM EST | By: Agent-Version]
 
 ## What The Fuck Is This?
 [Immediate explanation of folder purpose]
@@ -305,13 +341,13 @@ command --with-flags
 ## §6.1 When to Run (MANDATORY)
 
 **RUN BEFORE:** Ending ANY work session
-**LOCATION:** `9--(Helper)_(Scripts)/session_end_validator.py`
+**LOCATION:** `12--(Progress)_(Tracking)_(What)_(We)_(Did)/0.4--(Documentation)_(Validator)_(Script)_(BS)/session_end_validator.py`
 
 ## §6.2 How to Run
 
 ```bash
 cd /Users/chrishamlin/CodingProjects/Fractal-RMO/3--(PoC)_(Full)_(System)
-python 9--(Helper)_(Scripts)/session_end_validator.py
+python 12--(Progress)_(Tracking)_(What)_(We)_(Did)/0.4--(Documentation)_(Validator)_(Script)_(BS)/session_end_validator.py
 ```
 
 ## §6.3 Expected Output
@@ -403,17 +439,17 @@ Numbered work history files the next agent needs:
 4. IF created/modified files: Update folder READMEs (§5.2)
 5. Run validator script (§6.2)
 
-## §7.2 Scenario: Added New Dependency
+## §8.2 Scenario: Added New Dependency
 
 **ACTIONS:**
-1. Update Project Overview Technical Setup (§2.3)
+1. Update Project Overview Technical Setup (§2.4)
 2. Increment version number
 3. Add change log entry with reason
 4. Update work file with details
 5. Update short-term memory
 6. Run validator
 
-## §7.3 Scenario: Starting New Component
+## §8.3 Scenario: Starting New Component
 
 **ACTIONS:**
 1. Create new numbered work file (§3.1)
@@ -434,9 +470,9 @@ Numbered work history files the next agent needs:
 
 
 
-# SECTION 8: VISUAL FORMATTING REQUIREMENTS
+# SECTION 9: VISUAL FORMATTING REQUIREMENTS
 
-## §8.1 Section Separators
+## §9.1 Section Separators
 
 **MAJOR SECTIONS:** 
 ```
@@ -451,7 +487,7 @@ With EXACTLY 7 blank lines before and after
 ```
 With EXACTLY 7 blank lines before and after
 
-## §8.2 Lists and Bullets
+## §9.2 Lists and Bullets
 
 **PRIMARY POINTS:** Use bullet `•` or `-`
 **SECONDARY POINTS:** Indent with `○` or `-`
@@ -475,9 +511,9 @@ With EXACTLY 7 blank lines before and after
 
 
 
-# SECTION 9: IF/THEN DECISION RULES
+# SECTION 10: IF/THEN DECISION RULES
 
-## §9.1 File Selection Logic
+## §10.1 File Selection Logic
 
 **IF:** Working on same component as previous session
 **THEN:** Continue existing work file
@@ -488,7 +524,7 @@ With EXACTLY 7 blank lines before and after
 **IF:** Unsure which file to use
 **THEN:** Check Project Overview "ACTIVE WORK FILE"
 
-## §9.2 Update Priority Logic
+## §10.2 Update Priority Logic
 
 **IF:** Made any code changes
 **THEN:** Priority 1: Update work file
@@ -513,13 +549,13 @@ With EXACTLY 7 blank lines before and after
 
 
 
-# SECTION 10: FORBIDDEN ACTIONS
+# SECTION 11: FORBIDDEN ACTIONS
 
 ## ❌ NEVER DO THESE:
 
 1. **Skip timestamp** - EVERY entry needs exact time
 2. **Use relative paths** - ALWAYS use absolute paths
-3. **Forget timezone** - PST/PDT required
+3. **Forget timezone** - EST/EDT required
 4. **Mix work types** in same file
 5. **Keep 4+ memory entries** - Delete oldest
 6. **End without validation** - Script is mandatory
@@ -539,13 +575,13 @@ With EXACTLY 7 blank lines before and after
 
 
 
-# SECTION 11: QUICK REFERENCE DATA
+# SECTION 12: QUICK REFERENCE DATA
 
 ## Current Status (UPDATE WHEN CHANGES):
-- **Active Work File:** `1--(PoC)_(Project)_(Setup)`
-- **Next File Number:** `2--`
+- **Active Work File:** `2--(Documentation)_(Update)_(Fixes)`
+- **Next File Number:** `3--`
 - **Guidelines Version:** 2.0
-- **Validator Script:** `9--(Helper)_(Scripts)/session_end_validator.py`
+- **Validator Script:** `12--(Progress)_(Tracking)_(What)_(We)_(Did)/0.4--(Documentation)_(Validator)_(Script)_(BS)/session_end_validator.py`
 
 ## Master Paths:
 ```

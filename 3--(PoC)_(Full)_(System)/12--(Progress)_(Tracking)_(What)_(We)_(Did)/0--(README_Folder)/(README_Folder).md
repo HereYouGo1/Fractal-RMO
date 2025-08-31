@@ -1,6 +1,6 @@
 # Progress Tracking System - What's In This Folder
 
-[Last Updated: 2025-08-31 | 03:00 | By: Claude]
+[Last Updated: 2025-08-31 | 10:31 PST | By: Claude-4.1-Opus]
 
 ======================================================================
 
@@ -39,6 +39,14 @@ These files tell you HOW to work with the project:
 - Patterns of errors
 - Workarounds found
 
+**0.4--(Documentation)_(Validator)_(Script)_(BS)/**
+- Contains the validation script for checking documentation updates
+- Moved here from helper scripts folder
+
+**0.5--(Documentation)_(Update)_(Prompt)/**
+- The correct prompt to give agents for updating documentation
+- Has exact file paths and rule references
+
 
 ### 📚 Work History Files (1+ series)
 These contain detailed documentation of work done:
@@ -47,9 +55,13 @@ These contain detailed documentation of work done:
 - Everything we did to set up the PoC environment
 - Folder structure, venv, dependencies, Docker
 
+**2--(Documentation)_(Update)_(Fixes)/**
+- Fixed broken documentation update prompts
+- Corrected file paths and naming conventions
+
 **Future numbered files will be created as new major sections begin**
-- Example: 2--(Agent)_(Code)_(Creation)
-- Example: 3--(Orchestrator)_(Development)
+- Example: 3--(Agent)_(Code)_(Creation)
+- Example: 4--(Orchestrator)_(Development)
 - Each major work section gets its own file
 
 

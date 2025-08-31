@@ -25,7 +25,7 @@ Look for the **"CURRENT WORK CONTEXT"** section → **"PRIMARY WORK FILE"** to k
 
 ======================================================================
 
-## STEP 2: UPDATE PROJECT OVERVIEW (Follow Rules §2.1 and §2.2)
+## STEP 2: UPDATE PROJECT OVERVIEW (Follow Rules §2.0, §2.1, §2.2, and §2.3 if needed)
 
 **File to update:**
 ```
@@ -34,16 +34,24 @@ Look for the **"CURRENT WORK CONTEXT"** section → **"PRIMARY WORK FILE"** to k
 
 **Required updates:**
 
-### A. SHORT-TERM MEMORY section - Follow §2.1 template EXACTLY:
+### A. HEADER TIMESTAMP - Follow §2.0:
+- Update line 4 with current timestamp
+
+### B. SHORT-TERM MEMORY section - Follow §2.1 template EXACTLY:
 - Add your work as new Entry 3 (Latest)
 - Move old Entry 3 → Entry 2
 - Move old Entry 2 → Entry 1 
 - DELETE the old Entry 1 (oldest - keep maximum 3 entries)
 
-### B. CURRENT WORK CONTEXT section - Follow §2.2 template EXACTLY:
+### C. CURRENT WORK CONTEXT section - Follow §2.2 template EXACTLY:
 - Update **PRIMARY WORK FILE** if you created a new numbered file
 - Update **CURRENT PHASE** with what you just completed
 - Update **NEXT PLANNED WORK** with the immediate next action
+
+### D. SESSION INSIGHTS section - Follow §2.3 (ONLY if you found a gotcha/trap):
+- Add ONLY if you discovered something non-obvious that would trap future agents
+- Keep to 2-3 lines max
+- Don't add obvious shit
 
 ======================================================================
 
@@ -68,7 +76,7 @@ Create new numbered file like `2--(Component)_(Action)/(Component)_(Action).md`
 ### SUBSECTION: [Specific Descriptive Title]
 ----------------------------------------------------------------------
 
-[YYYY-MM-DD | HH:MM-HH:MM PST | Agent-Version]
+[YYYY-MM-DD | HH:MM-HH:MM EST | Agent-Version]
 
 **WHAT WE DID:** [One clear sentence]
 
@@ -150,7 +158,7 @@ Numbered work history files the next agent needs:
 
 ## Red flags that agent fucked up:
 - Wrong file paths (like 001_PROJECT_OVERVIEW.md instead of actual names)
-- Missing timestamps or wrong format (needs YYYY-MM-DD | HH:MM PST | Agent-Version)
+- Missing timestamps or wrong format (needs YYYY-MM-DD | HH:MM EST | Agent-Version)
 - Didn't run validator
 - Created files with wrong naming convention
 - Skipped updating Project Overview
@@ -176,7 +184,7 @@ head -n 200 /Users/chrishamlin/CodingProjects/Fractal-RMO/3--(PoC)_(Full)_(Syste
 
 ## Common agent fuck-ups:
 1. **Creates new files instead of updating existing** - Tell them to UPDATE not CREATE
-2. **Wrong timestamp format** - Must be [YYYY-MM-DD | HH:MM-HH:MM PST | Agent-Version]
+2. **Wrong timestamp format** - Must be [YYYY-MM-DD | HH:MM-HH:MM EST | Agent-Version]
 3. **Forgets to delete old memory entry** - Maximum 3 entries, delete oldest
 4. **Skips validator** - Make them run it, no exceptions
 5. **Uses wrong paths** - All docs are in 12--(Progress)_(Tracking)_(What)_(We)_(Did)/
