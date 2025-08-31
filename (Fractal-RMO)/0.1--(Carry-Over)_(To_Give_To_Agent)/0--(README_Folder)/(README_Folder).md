@@ -1,0 +1,4 @@
+These 3 documents in this folder are for ANY agent hop in general (these thingd are just like basic things such as agent personality, file naming structure, and then there is a document in there that is all about just how to explain documents they give me... because I'm sick and tired of them giving documents and just not knowing what the fuck is going on.... to this point you should also probably explain like to also put in a little document flow thing at the end of the document)
+
+The section after this labelled 1--(Convo-Specific)_(Context)_(Docs)_(To)_(Give) is intended to be a folder where specific conversational contexts are stored. For example, at the moment there is all the context needed to continue on the PoC Planning Agent conversation.
+    -This makes it easier because lets say I need to refer back to the planning stage context for some reason, then its all right there for me to give to the agent.

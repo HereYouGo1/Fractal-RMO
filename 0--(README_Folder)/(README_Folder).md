@@ -1,0 +1,1 @@
+The actual (Fractal-RMO)_(CODER) document was originally copy and pasted from the google docs. It is super loose and half baked, and I'm also going to post in at the bottom another exerpt I took from the README of some
