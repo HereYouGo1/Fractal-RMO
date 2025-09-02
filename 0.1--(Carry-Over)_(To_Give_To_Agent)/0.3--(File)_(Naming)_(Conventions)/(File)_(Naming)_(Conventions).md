@@ -39,6 +39,10 @@ Example Structure:
 Project_Name/
 ├── 0--(README_Folder)/
 │   └── (README_Folder).md
+├── 0.1--(Other)_(Preliminary)_(Document)/
+│   └── (Other)_(Preliminary)_(Document).md
+├── 0.2--(Same as 0.1/carries on with all Preliminary documents like this)
+│   └── (ect.)_(ect.)_(ect.).md
 ├── 1--(Most_Important)/
 │   └── (Most_Important)/(Most_Important).md
 ├── 2--(Second_Priority)/
