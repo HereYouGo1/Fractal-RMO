@@ -345,9 +345,10 @@ WITHOUT Pointer-Only Rule:          WITH Pointer-Only Rule:
     │  Format: "YYYY-MM-DD: Branch-ID: What agent did"      │
     │                                                        │
     │  Example full workflow:                                │
-    │  $ git add -A                                          │
+    │  $ cd /Users/chrishamlin/CodingProjects/Fractal-RMO   │
+    │  $ git add .                                           │
     │  $ git commit -m "2025-09-01: A-1: Add tests"         │
-    │  $ git push origin main                                │
+    │  $ git push origin master                              │
     │  [Shows: 3 files changed, 47 insertions]              │
     │                                                        │
     │  [Prompt Chris every time - NO EXCEPTIONS]            │
