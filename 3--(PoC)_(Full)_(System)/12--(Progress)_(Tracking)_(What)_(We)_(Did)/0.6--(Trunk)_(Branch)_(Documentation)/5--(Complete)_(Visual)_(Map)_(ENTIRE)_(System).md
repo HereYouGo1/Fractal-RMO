@@ -143,17 +143,23 @@ WITHOUT Pointer-Only Rule:          WITH Pointer-Only Rule:
 │   │   │               "A-2: Error Handling (Active)"
 │   │   │
 │   │   ├── 0.2--(Sub-Bnch)_(Propositions)/    [📝 WHERE AGENTS PROPOSE NEW BRANCHES]
-│   │   │   └── (Sub-Bnch)_(Propositions).md   [🔴 ONE SHEET WITH ALL PROPOSALS!]
-│   │   │       Contains MULTIPLE proposals in ONE file:
-│   │   │       ### A-3: [Brief Description]
-│   │   │       **Proposed by:** Agent-X on [Date]
-│   │   │       **Why needed:** [4-5 sentences explaining deliverable]
-│   │   │       **Status:** [PROPOSED/APPROVED/REJECTED]
+│   │   │   └── (Sub-Bnch)_(Propositions).md   [🔴 ONE CONSOLIDATED FILE - NOT SEPARATE FILES!]
+│   │   │       ⚠️ CRITICAL: This is a SINGLE document containing ALL proposals
+│   │   │       NOT individual files per proposal (Doc 2, line 59)
 │   │   │       
-│   │   │       ### A-4: [Another proposal]
-│   │   │       **Proposed by:** Agent-Y on [Date]
-│   │   │       **Why needed:** [4-5 sentences]
-│   │   │       **Status:** [PROPOSED/APPROVED/REJECTED]
+│   │   │       Format inside the SINGLE file:
+│   │   │       ### A-3: Error Recovery System
+│   │   │       **Proposed by:** Claude-4.1 on 2025-09-01 | 14:30 EST
+│   │   │       **Why needed:** This sub-branch would create a complete error
+│   │   │       recovery system as a distinct deliverable. While A-2 handles
+│   │   │       basic error catching, recovery involves retry logic, fallback
+│   │   │       strategies, and state restoration which is a separate concern.
+│   │   │       **Status:** PROPOSED [Awaiting Chris review]
+│   │   │       
+│   │   │       ### A-4: Agent Routing System  
+│   │   │       **Proposed by:** Claude-4.1 on 2025-09-01 | 15:00 EST
+│   │   │       **Why needed:** [Another 4-5 sentence explanation]
+│   │   │       **Status:** APPROVED ✓ [Chris approved 2025-09-01 | 16:00 EST]
 │   │   │
 │   │   ├── 1--(A)_(Main_Bnch)_(O-F)/
 │   │   │   └── (A)_(Main_Bnch)_(O-F).md       [Main branch overview]
@@ -331,7 +337,7 @@ WITHOUT Pointer-Only Rule:          WITH Pointer-Only Rule:
     └───────────┬───────────────────────────────────────┘
                 ▼
     ┌────────────────────────────────────────────────────────┐
-    │  🔴 GIT COMMIT MANDATORY (CHRIS'S RULE: EVERY UPDATE!)│
+    │  🔴 GIT COMMIT MANDATORY (CHRIS'S RULE: EVERY UPDATE!) │
     │                                                        │
     │  Changes made:                                         │
     │  • Updated A-1 sub-branch O-F                          │
@@ -339,20 +345,20 @@ WITHOUT Pointer-Only Rule:          WITH Pointer-Only Rule:
     │  • Updated master timestamp                            │
     │                                                        │
     │  MUST RUN:                                             │
-    │  git add -A && git commit -m "2025-09-01: A-1: Add    │
-    │  tests and error handling"                            │
+    │  git add -A && git commit -m "2025-09-01: A-1: Add     │
+    │  tests and error handling"                             │
     │                                                        │
-    │  Format: "YYYY-MM-DD: Branch-ID: What agent did"      │
+    │  Format: "YYYY-MM-DD: Branch-ID: What agent did"       │
     │                                                        │
     │  Example full workflow:                                │
-    │  $ cd /Users/chrishamlin/CodingProjects/Fractal-RMO   │
+    │  $ cd /Users/chrishamlin/CodingProjects/Fractal-RMO    │
     │  $ git add .                                           │
-    │  $ git commit -m "2025-09-01: A-1: Add tests"         │
+    │  $ git commit -m "2025-09-01: A-1: Add tests"          │
     │  $ git push origin master                              │
-    │  [Shows: 3 files changed, 47 insertions]              │
+    │  [Shows: 3 files changed, 47 insertions]               │
     │                                                        │
-    │  [Prompt Chris every time - NO EXCEPTIONS]            │
-    └─────────────┬────────────────────────────────────────┘
+    │  [Prompt Chris every time - NO EXCEPTIONS]             │
+    └─────────────┬──────────────────────────────────────────┘
                 ▼
          ╔═════════════╗
          ║ Continue?   ║─────YES───→ [Back to WORK]
@@ -1061,329 +1067,421 @@ file every single time he runs)"
 ======================================================================
 
 
-# LAYER 9: PRACTICAL EXAMPLES
-## Real Scenarios in Action
+# LAYER 9: COMPLETE PRACTICAL SCENARIOS
+## Full Walkthroughs from Doc 3 - Showing REAL Complexity
 
-### Example 1: Agent Working on A-1 Needs B-3 Context
-
-```
-Step 1: A-1 realizes need for B-3's database models
-Step 2: Check B-3's last update in Master Log (14:00)
-Step 3: Add to A-1's O-F:
-        Dependencies: B-3 models [14:00 EST]
-Step 4: Import needed parts
-Step 5: Continue work
-Step 6: Tomorrow - check if B-3 updated after 14:00
-```
-
-### Example 2: C-4 Updates, Affecting Downstream
+### SCENARIO 1: Creating New Sub-Branch A-2 for Error Handling
+### (From Doc 3, lines 393-428 - COMPLETE WALKTHROUGH)
 
 ```
-Initial: E-7 → A-6 → C-4 (all current)
-Event:   C-4 updates at 17:00
-Effect:  A-6 marked stale (but NOT auto-updated)
-Later:   E-7 agent logs in
-Result:  BLOCKED - must update A-6 first
-Action:  Run update agent or manual sync
+SITUATION: Agent working on A-1 identifies need for error handling deliverable
+
+STEP 1: IDENTIFY NEED
+   Agent realizes: "Error handling is separate deliverable from base classes"
+   Decision: "This will produce testable error management system"
+   
+STEP 2: ADD TO PROPOSITIONS SHEET
+   Path: 2--(A)_(Main_Bnch)_(O-F)/0.2--(Sub-Bnch)_(Propositions)/(Sub-Bnch)_(Propositions).md
+   
+   Write in the SINGLE propositions file:
+   ### A-2: Error Handling System
+   **Proposed by:** Claude-4.1 on 2025-09-01 | 14:30 EST
+   **Why needed:** This sub-branch would create a complete error handling
+   system as a distinct deliverable. While base agent work in A-1 handles
+   basic class structure, error handling involves catch blocks, error types,
+   retry logic, and logging which is a separate deliverable concern. This
+   produces a tested error module other branches can import.
+   **Status:** PROPOSED
+   
+STEP 3: CHRIS REVIEWS DURING PLANNING
+   Chris reads propositions, adds decision:
+   **Status:** APPROVED ✓
+   **Date:** 2025-09-01 | 15:00 EST  
+   **Comments:** Good scope. Add exponential backoff for retries.
+   
+STEP 4: CREATE STRUCTURE (Agent sees approval)
+   mkdir -p "0.2--(Trunk)_(Branch)_(System)/2--(A)_(Main_Bnch)_(O-F)/3--(A-2)_(Sub_Bnch)_(O-F)"
+   
+STEP 5: CREATE A-2 O-F WITH DEPENDENCIES
+   Create (A-2)_(Sub_Bnch)_(O-F).md with:
+   ## Objective: 
+   Add comprehensive error handling to agent system
+   
+   ## Dependency Chain:
+   Direct dependencies: A-1
+   A-1 depends on: [none]
+   Full chain: A-2 → A-1
+   
+   ## Shared Context Sources:
+   - A-1: Base agent classes [2025-09-01 | 12:00 EST]
+     * Need class structure to add error handling
+   - D: Logging patterns [2025-09-01 | 10:00 EST] 
+     * Reference for consistent logging approach
+     
+   ## Context Dependencies:
+   - Critical: A-1 (can't add errors without base)
+   - Informational: D (helpful but not required)
+   
+   ## Initial Status: Planning
+   
+STEP 6: UPDATE A's MAIN O-F
+   In (A)_(Main_Bnch)_(O-F).md:
+   ## SHORT-TERM MEMORY:
+   Entry 3: A-2 started - Error handling system
+   Entry 2: A-1 active - Base agent work  
+   Entry 1: [Previous Entry 2]
+   
+   In 0.1--(Index)_(Sub-Bnchs)/(Index)_(Sub-Bnchs).md:
+   ## Sub-Branches:
+   - A-1: Base Agent Creation (Active)
+   - A-2: Error Handling (Planning)
+   
+STEP 7: UPDATE MASTER TIMESTAMP LOG
+   In 0.2--(Master)_(Timestamp)_(Log)/(Master)_(Timestamp)_(Log).md:
+   - A-1: 2025-09-01 | 12:00 EST
+   - A-2: 2025-09-01 | 15:30 EST ← NEW
+   
+STEP 8: GIT COMMIT PROMPT
+   🟢 GIT COMMIT NEEDED
+   
+   Changes made:
+   - Created A-2 sub-branch structure
+   - Added A-2 to propositions (approved)
+   - Updated A main O-F with new sub-branch
+   - Added A-2 to master timestamp log
+   
+   Suggested commit:
+   git add -A && git commit -m "A-2: Create error handling sub-branch"
+   
+   Chris runs: git add . && git commit -m "A-2: Create error handling sub-branch"
 ```
 
-### Example 3: Branches C and F Merge
+### SCENARIO 2: Branch A-1 Needs External Context from B-3
+### (From Doc 3, lines 430-461 - COMPLETE INTER-BRANCH FLOW)
 
 ```
-Before:  C (cache) complete, F (frontend) complete
-Action:  Create C-F merged branch
-After:   C, F, and C-F all exist!
-Why:     C can still evolve independently
-         F can still evolve independently
-         C-F has integrated version
-Updates: C changes → check if affects C-F
-         F changes → check if affects C-F
+SITUATION: During A-1 work, agent realizes need for B-3's authentication logic
+
+STEP 1: DURING A-1 WORK, REALIZE NEED
+   Working on: agent.py base class
+   Realization: "Agents need to authenticate with APIs"
+   Check: "B-3 has auth implementation I can reuse"
+
+STEP 2: CHECK MASTER TIMESTAMP LOG FOR B-3'S LAST UPDATE
+   Path: 0.2--(Trunk)_(Branch)_(System)/0.2--(Master)_(Timestamp)_(Log)/(Master)_(Timestamp)_(Log).md
+   
+   Find in log:
+   - B-3: 2025-09-01 | 14:00 EST
+   
+   Decision: "B-3 last updated at 14:00 EST, I'll import from that version"
+
+STEP 3: READ B-3's O-F FOR RELEVANT SECTIONS
+   Path: 3--(B)_(Main_Bnch)_(O-F)/4--(B-3)_(Sub_Bnch)_(O-F)/(B-3)_(Sub_Bnch)_(O-F).md
+   
+   Find what I need:
+   - OAuth2 flow implementation
+   - Token refresh logic  
+   - Session management
+   
+   Check B-3's dependencies:
+   ## Dependency Chain:
+   Direct dependencies: B-1, C-1
+   B-1 depends on: [none]
+   C-1 depends on: [none]
+   Full chain: B-3 → [B-1] + [C-1]
+   
+   Think: "If I import B-3, do I transitively need B-1 or C-1?"
+   Answer: "No, just taking auth pattern, not the full implementation"
+
+STEP 4: IN A-1's O-F, ADD TO DEPENDENCY CHAIN
+   Path: 2--(A)_(Main_Bnch)_(O-F)/2--(A-1)_(Sub_Bnch)_(O-F)/(A-1)_(Sub_Bnch)_(O-F).md
+   
+   Update to:
+   ## Dependency Chain:
+   Direct dependencies: B-3 (auth logic)
+   B-3 depends on: B-1, C-1
+   Full chain: A-1 → B-3 → [B-1 + C-1]
+   
+   ## Shared Context Sources:
+   ### Partial Context Imports:
+   - B-3: Authentication logic [2025-09-01 | 14:00 EST]
+     * OAuth2 flow pattern
+     * Token refresh approach
+     * NOT importing: B-3's specific endpoints
+   
+   ## Context Dependencies:
+   - Important: B-3 (need consistent auth approach)
+
+STEP 5: EXTRACT NEEDED PARTS FROM B-3
+   - Copy OAuth2 flow pattern to A-1 work
+   - Adapt for agent-specific needs
+   - Document in work history: "Imported B-3 auth pattern"
+
+STEP 6: CONTINUE WORK WITH CONTEXT
+   Now A-1 has auth logic without rebuilding from scratch
+
+STEP 7: ON NEXT A-1 LOGIN, CHECK FOR STALENESS
+   Next day, agent logs into A-1:
+   
+   Check Master Timestamp Log:
+   - B-3: 2025-09-02 | 10:00 EST ← UPDATED!
+   
+   Compare to A-1's import:
+   - B-3 imported at: 14:00 EST yesterday
+   - B-3 updated at: 10:00 EST today
+   - Status: ⚠️ STALE
+   
+   Decision process:
+   1. Check what changed in B-3 (read B-3 O-F)
+   2. See: "Added JWT support"
+   3. Evaluate: "Do I need JWT in agents?"
+   4. Decide: "Yes, update my import"
+   
+STEP 8: UPDATE A-1 IF NEEDED
+   - Re-import B-3's new auth with JWT
+   - Update A-1's O-F:
+     B-3: Authentication logic [2025-09-02 | 10:00 EST] ← NEW TIMESTAMP
+   - Document in work history: "Updated B-3 auth import for JWT"
+
+STEP 9: GIT COMMIT AFTER ADDING DEPENDENCY
+   🟢 GIT COMMIT NEEDED
+   
+   Changes made:
+   - A-1 added B-3 authentication dependency
+   - Updated dependency chain in A-1 O-F
+   - Modified agent.py with auth logic
+   
+   Suggested commit:
+   git add -A && git commit -m "A-1: Import B-3 auth patterns"
 ```
 
-
-# LAYER 10: PENCILED ITEMS STATUS TRACKER
-## Current Progress on Decision Points (FROM CHRIS'S CHECKLIST)
-
-```
-┌──────────────────────────────────────────────────────────┐
-│         🔔 PENCILED ITEMS - PRIORITY ORDER STATUS        │
-│                                                          │
-│  Progress: ~20% through PENCILED items                   │
-└──────────────────────────────────────────────────────────┘
-
-┌──────────────────────────────────────────────────────────┐
-│ PRIORITY 1 - BLOCKING IMPLEMENTATION:                    │
-└──────────────────────────────────────────────────────────┘
-
-1. CONTEXT ANALYSIS GUIDELINES [🔄 IN PROGRESS]
-   Status: Working on this NOW
-   Where it affects: Branch creation (Layer 6)
-   What's needed:
-   ┌──────────────────────────────────────────────────────────┐
-   │ Exact rules for:                                         │
-   │ • RELEVANT: Shares domain? Same tech stack? Dependencies?│
-   │ • NOT RELEVANT: Different domain? No shared code?        │
-   │ • MAYBE: Could be useful but not critical?               │
-   │                                                          │
-   │ Current Protocol (Doc 3) says "guidelines TBD"           │
-   └──────────────────────────────────────────────────────────┘
-
-2. GIT INTEGRATION STRATEGY [⭕ IN PROGRESS - Next up]
-   Status: Chris needs to research Git first
-   Where it affects: Every update (Layer 3, Step 4)
-   Chris's note: "I don't know much about Git"
-   ┌───────────────────────────────────────────────────────┐
-   │ Options to explore:                                   │
-   │ • Mirror structure: git branch per doc branch         │
-   │ • Single branch: all docs in one git branch           │
-   │ • Hybrid: main branches only in git                   │
-   │                                                       │
-   │ Current: Prompt for commits on ALL updates            │
-   └───────────────────────────────────────────────────────┘
-
-┌──────────────────────────────────────────────────────────┐
-│ PRIORITY 2 - AFFECTS OPERATIONS:                         │
-└──────────────────────────────────────────────────────────┘
-
-3. VALIDATION REQUIREMENTS [⭕ NOT STARTED]
-   Status: Need to decide what checks before trunk updates
-   Where it affects: Before any trunk modification
-   ┌───────────────────────────────────────────────────────┐
-   │ Options:                                              │
-   │ • Automated: Script checks for conflicts              │
-   │ • Manual: Always ask Chris                            │
-   │ • Hybrid: Auto for minor, manual for major            │
-   │                                                       │
-   │ Trade-off: Speed vs Safety                            │
-   └───────────────────────────────────────────────────────┘
-
-4. SYNCHRONIZATION AGENT FREQUENCY [⭕ NOT STARTED]
-   Status: Need to decide how often sync runs
-   Where it affects: Layer 7 automation
-   ┌───────────────────────────────────────────────────────┐
-   │ Options:                                              │
-   │ • Continuous: After every change (resource heavy)     │
-   │ • Periodic: Hourly/Daily (might miss critical updates)│
-   │ • Triggered: On specific events (complex logic)       │
-   │                                                       │
-   │ Chris will run periodically (needs to be fast)        │
-   └───────────────────────────────────────────────────────┘
-
-┌──────────────────────────────────────────────────────────┐
-│ PRIORITY 3 - IMPLEMENTATION DETAILS:                     │
-└──────────────────────────────────────────────────────────┘
-
-5. CHECK-OFF SYSTEM IMPLEMENTATION [⭕ NOT STARTED]
-   Status: Need to build for sync agent efficiency
-   Where it affects: Layer 7 performance (92% time savings!)
-   ┌─────────────────────────────────────────────────────────┐
-   │ Chris's requirement: "Don't check everything every time"│
-   │                                                         │
-   │ Options:                                                │
-   │ • File-based: Simple text log of what changed           │
-   │ • JSON: Structured tracking                             │
-   │ • Database: For when system scales                      │
-   │                                                         │
-   │ Start simple (file-based), evolve as needed             │
-   └─────────────────────────────────────────────────────────┘
-
-6. VALIDATION SCRIPT UPDATES [⭕ NOT STARTED]
-   Status: Current validator is "bullshit" per Chris
-   Where it affects: Session end validation
-   ┌───────────────────────────────────────────────────────┐
-   │ Needs complete rewrite for:                           │
-   │ • Branch awareness (know which branch we're in)       │
-   │ • Dependency checking (validate chains)               │
-   │ • Context validation (imports are current)            │
-   │ • Structure verification (all required files exist)   │
-   └───────────────────────────────────────────────────────┘
-```
-
-## 🔴 ADDITIONAL PENCILED ITEMS (FROM ALL 4 DOCS):
-
-### From Doc 1 (Architecture):
-
-**7. VERIFICATION PROTOCOL [Doc 1, lines 499-507]**
-   Status: Exact steps for trunk modification approval
-   Why it matters: Protects shared state from corruption
-   Options:
-   • Automatic with warnings
-   • Always require confirmation
-   • Smart detection of sensitive changes
-   Current thought: Agent prompts Chris for sensitive changes
-
-### From Doc 2 (Structure):
-
-**8. BRANCH ARCHIVAL [Doc 2, lines 463-467]**
-   Status: Where do completed branches go?
-   Options: Archive folder vs keeping in place with status marker
-   Consideration: Need to preserve work history
-
-**9. CROSS-PROJECT BRANCHES [Doc 2, lines 469-472]**
-   Status: Can branches span multiple PoC folders?
-   Context: If agent work touches multiple system parts
-   Current thought: Keep branches within single PoC folder
-
-### From Doc 3 (Operations):
-
-**10. CONFLICT RESOLUTION PROTOCOL [Doc 3, lines 758-761]**
-   Status: Exact steps when updates conflict
-   Context: Rare but critical when it happens
-   Current thought: Manual review with Chris
-
-**11. AGENT ASSIGNMENT METHOD [Doc 3, lines 768-771]**
-   Status: How agents know which branch to work on
-   Context: Need clear assignment mechanism
-   Current thought: Explicit in initial prompt
-
-### From Doc 4 (Advanced):
-
-**12. CONTEXT ANALYSIS GUIDELINES [Doc 4, lines 1007-1014]**
-   Status: Specific rules for what context to import
-   Considerations:
-   • Relevance threshold
-   • Stability requirements
-   • Version compatibility
-   Recommendation: Create relevance scoring system
-
-**13. DEPENDENCY VISUALIZATION [Doc 4, lines 1062-1065]**
-   Purpose: See context relationships graphically
-   Implementation: Generate graph from O-F references
-   Priority: Nice to have
-
-**14. AUTOMATED MERGE PROPOSALS [Doc 4, lines 1067-1070]**
-   Purpose: Suggest when branches should merge
-   Implementation: Analyze overlap and completion
-   Priority: Later phase
-
-**15. PERFORMANCE METRICS [Doc 4, lines 1072-1078]**
-   Purpose: Track system efficiency
-   Metrics:
-   • Context reuse rate
-   • Update propagation time
-   • Conflict frequency
-   Priority: After system stable
-
-**16. BRANCH TEMPLATES [Doc 4, lines 1080-1086]**
-   Purpose: Standardize common branch types
-   Templates:
-   • Feature branch template
-   • Bug fix branch template
-   • Integration branch template
-   Priority: After patterns emerge
-
-## 🌆 EDGE CASES & GAPS (To discuss after PENCILED items):
+### SCENARIO 3: Two Branches Merge (C and F → C-F)
+### (From Doc 3, lines 463-492 + Doc 1, lines 404-436 - COMPLETE MERGE)
 
 ```
-• Parallel work opportunity definition (parked for now)
-• Specific conflict resolution steps (when updates conflict)
-• Agent assignment mechanism details (how agents know branch)
-• Branch archival strategy (what happens to completed branches?)
-• Cross-project branches possibility (can branches span projects?)
+SITUATION: C (cache) and F (frontend) both complete, need integration
+
+STEP 1: COMPLETE INDIVIDUAL OBJECTIVES
+   C branch status: Cache layer fully implemented
+   F branch status: Frontend components complete
+   Decision: "These need to work together"
+
+STEP 2: IDENTIFY OVERLAP/INTEGRATION NEEDS
+   - C has cache invalidation logic
+   - F needs to trigger cache updates
+   - Integration point: Cache-aware frontend
+
+STEP 3: CREATE NEW C-F MAIN BRANCH
+   mkdir -p "0.2--(Trunk)_(Branch)_(System)/5--(C-F)_(Main_Bnch)_(O-F)"
+   
+   Note: This is number 5 because we already have:
+   2--(A), 3--(B), 4--(C), [F was actually under 4--(F)]
+
+STEP 4: IN C-F O-F, DOCUMENT ORIGIN
+   Create (C-F)_(Main_Bnch)_(O-F).md:
+   
+   ## Branch Origin:
+   - Merged from: C (cache system) + F (frontend) 
+   - Merge date: 2025-09-01 | 16:00 EST
+   - Purpose: Integrated cache-aware frontend
+   - Original branches: STILL ACTIVE for independent work
+   
+   ## Imported From C:
+   - Complete caching implementation
+   - Invalidation strategies
+   - Performance optimizations
+   
+   ## Imported From F:
+   - React components
+   - State management
+   - API integration layer
+   
+   ## Integration Work:
+   - Cache hooks for React
+   - Optimistic updates
+   - Cache-first data fetching
+
+STEP 5: PARSE RELEVANT WORK FROM C AND F
+   - Copy final implementations from both
+   - Combine insights sections
+   - Merge dependency lists:
+     
+   ## Dependency Chain:
+   Direct dependencies: [From C] + [From F]
+   From C: Redis configs, D-1 database
+   From F: B-2 API endpoints, E-1 deployment
+   Full chain: C-F → [C deps] + [F deps]
+
+STEP 6: UPDATE TRUNK
+   In (Trunk)_(O-F).md:
+   
+   ## LONG-TERM MEMORY:
+   Branch C-F (Cache-Frontend Integration):
+   - Status: Active
+   - Created from: C + F merger
+   - Note: C and F remain for independent development
+   
+   ## SHORT-TERM MEMORY:
+   Entry 3: Branch C-F created - Integration work
+   Entry 2: [Previous Entry 3]
+   Entry 1: [Previous Entry 2]
+
+STEP 7: CRITICAL - ORIGINAL C AND F REMAIN!
+   ⚠️ C and F branches DO NOT disappear!
+   
+   Directory structure now shows:
+   ├── 4--(C)_(Main_Bnch)_(O-F)/  ← STILL EXISTS
+   ├── 4--(F)_(Main_Bnch)_(O-F)/  ← STILL EXISTS  
+   └── 5--(C-F)_(Main_Bnch)_(O-F)/ ← NEW MERGED
+   
+   WHY? (Chris's exact reasoning from Doc 1, line 426):
+   "What if the C branch needs more development, which is 
+   specific to the C branch yet not the F branch? It should
+   be able to be changed with the full context of C, without
+   F muddying it."
+
+STEP 8: FUTURE UPDATE FLOWS
+   
+   Scenario A: C branch gets cache optimization
+   - Developer works in C (no frontend code cluttering)
+   - Tests optimization in isolation
+   - Once working, check: "Does this affect C-F?"
+   - If yes: Port optimization to C-F
+   - If no: Stays in C only
+   
+   Scenario B: F branch gets UI update
+   - Developer works in F (no cache logic cluttering)
+   - Updates components
+   - Check: "Does this affect C-F?"
+   - Decide based on integration impact
+   
+   Scenario C: C-F develops independently
+   - Work happens directly in C-F
+   - Changes DON'T flow back to C or F
+   - C-F becomes its own evolution path
+
+STEP 9: DOCUMENT UPDATE MONITORING
+   In C-F's O-F:
+   
+   ## Update Monitoring:
+   - C last checked: 2025-09-01 | 16:00 EST
+   - F last checked: 2025-09-01 | 16:00 EST  
+   - Auto-sync from: C (critical cache changes), F (UI updates)
+   - Manual sync for: Integration-specific changes
 ```
 
-
-======================================================================
-======================================================================
-
-
-# THE COMPLETE FLOW: START TO FINISH
-## Following One Complete Work Cycle
+### SCENARIO 4: Dependency Chain Causes Blocking
+### (From Doc 3, lines 38-82 - COMPLETE BLOCKING & RESOLUTION)
 
 ```
-DAY 1 - AGENT STARTS
-────────────────────
-[Login] → [Get trunk + A-1 assignment] → [Check dependencies]
-   ↓
-[All current] → [Read A-1 O-F and work history] 
-   ↓
-[Identify need for new error handling deliverable]
-   ↓
-[Write A-2 proposal] → [Chris approves]
-   ↓
-[Run context analysis] → [Create A-2 structure]
-   ↓
-[Work in A-2] → [Import A-1 base class]
-   ↓
-[Discover Docker-VPN issue] → [Document in A-2 insights]
-   ↓
-[Realize affects other branches] → [Promote to trunk]
-   ↓
-[Update A-2 O-F] → [Update A main O-F] → [Update trunk]
-   ↓
-[Update Master Timestamp Log: A-2 | 15:30 EST]
-   ↓
-[Git commit prompt] → [Document handoff] → [Logout]
+SITUATION: E-7 agent logs in, has stale dependencies through chain
 
-DAY 2 - NEXT AGENT
-──────────────────
-[Login] → [Get trunk + B-1 assignment] → [Check dependencies]
-   ↓
-[See A-2 in trunk insights] → [Note Docker-VPN issue]
-   ↓
-[Work in B-1] → [Need A-2 error patterns]
-   ↓
-[Check Master Log: A-2 updated yesterday 15:30]
-   ↓
-[Import A-2 patterns] → [Document dependency]
-   ↓
-[Continue work] → [Update cascade] → [Git commit]
+INITIAL STATE:
+   E-7 depends on A-6
+   A-6 depends on C-4
+   All were current as of yesterday
 
-DAY 3 - SYNC AGENT
-──────────────────
-[Run] → [Check check-off log] → [Only 8 files changed]
-   ↓
-[Check trunk-branch alignment] → [All tech specs match]
-   ↓
-[Check context updates] → [B-1 has stale A-2 reference]
-   ↓
-[Mark for next B-1 login] → [Update check-off log]
-   ↓
-[Report: 92% time saved]
+STEP 1: E-7 AGENT LOGS IN
+   Receives:
+   - Trunk O-F
+   - Assignment: "You're working on E-7"
+   - E-7's O-F and work history
+
+STEP 2: READ E-7's DEPENDENCY CHAIN
+   In (E-7)_(Sub_Bnch)_(O-F).md:
+   
+   ## Dependency Chain:
+   Direct dependencies: A-6
+   A-6 depends on: C-4  
+   C-4 depends on: [none]
+   Full chain: E-7 → A-6 → C-4
+   
+   ## Last Sync Times:
+   - A-6: Last synced 2025-09-01 | 10:00 EST
+
+STEP 3: CHECK MASTER TIMESTAMP LOG
+   Path: 0.2--(Master)_(Timestamp)_(Log)/(Master)_(Timestamp)_(Log).md
+   
+   Find:
+   - E-7: 2025-09-01 | 10:00 EST (my last update)
+   - A-6: 2025-09-01 | 10:00 EST (when I last synced)
+   - C-4: 2025-09-01 | 17:00 EST ← PROBLEM!
+   
+   Analysis:
+   C-4 updated at 17:00 (after A-6's last sync at 10:00)
+   Therefore: A-6 has stale C-4 dependency
+   Therefore: E-7 can't trust A-6's state
+
+STEP 4: BLOCKING MESSAGE APPEARS
+   
+   🔴 STARTUP BLOCKED - Dependency Chain Issue
+   
+   E-7 cannot proceed because:
+   • E-7 depends on A-6 (last synced: 10:00 EST)
+   • A-6 depends on C-4 (updated: 17:00 EST)
+   • A-6 needs update from C-4 first
+   
+   Current chain state:
+   E-7 [10:00] → A-6 [10:00/STALE] → C-4 [17:00/CURRENT]
+   
+   To resolve:
+   1. Run update agent on A-6, or
+   2. Manually update A-6 with C-4's context
+   3. Then E-7 can proceed
+
+STEP 5: RESOLUTION OPTION 1 - RUN UPDATE AGENT
+   
+   UPDATE AGENT WORKFLOW:
+   
+   a) Agent invoked with: "Update A-6 from C-4"
+   
+   b) Update agent reads C-4's O-F:
+      Finds: "Changed caching strategy to Redis"
+   
+   c) Update agent reads A-6's O-F:
+      Finds: "Uses old memory cache from C-4"
+   
+   d) Update agent updates A-6's O-F:
+      ## Shared Context Sources:
+      - C-4: Cache implementation [2025-09-01 | 17:00 EST] ← NEW
+        * Updated to Redis caching
+      
+      ## Notes:
+      - Cache strategy changed from memory to Redis
+      - Update implementation accordingly
+   
+   e) Update Master Timestamp Log:
+      - A-6: 2025-09-01 | 18:00 EST ← UPDATED
+   
+   f) Reports: "A-6 updated with C-4 changes"
+
+STEP 6: RESOLUTION OPTION 2 - MANUAL UPDATE
+   
+   a) Read C-4's latest changes yourself
+   b) Read A-6's current state
+   c) Manually edit A-6's O-F with updates
+   d) Update timestamps
+   e) Document what changed
+
+STEP 7: E-7 CAN NOW PROCEED
+   
+   Re-check Master Timestamp Log:
+   - E-7: 2025-09-01 | 10:00 EST
+   - A-6: 2025-09-01 | 18:00 EST ← NOW CURRENT
+   - C-4: 2025-09-01 | 17:00 EST
+   
+   Chain is now:
+   E-7 [10:00] → A-6 [18:00/CURRENT] → C-4 [17:00/CURRENT]
+   
+   ✅ Dependencies satisfied, work can begin!
+
+STEP 8: E-7 UPDATES ITS SYNC TIME
+   In (E-7)_(Sub_Bnch)_(O-F).md:
+   
+   ## Last Sync Times:
+   - A-6: Last synced 2025-09-01 | 18:00 EST ← UPDATED
+   - Status: ✓ CURRENT
 ```
-
-
-======================================================================
-======================================================================
-
-
-# SUMMARY: THE SYSTEM AT A GLANCE
-
-## Core Components:
-• **TRUNK**: Project truth (pointers only)
-• **MAIN BRANCHES**: Organizational domains
-• **SUB-BRANCHES**: Deliverable-based work areas
-• **MASTER TIMESTAMP LOG**: Heartbeat of updates
-• **PROPOSITIONS**: Planning layer
-• **O-F FILES**: Overview at each level
-• **WORK HISTORY**: Actual implementation
-• **INDEXES**: 5-7 word navigation
-
-## Key Workflows:
-• **AGENT**: Login → Check deps → Work → Update → Commit
-• **UPDATES**: Stay local OR flow up if project-wide
-• **DEPENDENCIES**: Lazy updates (only when needed)
-• **CONTEXT**: Explicit imports with timestamps
-• **SYNC**: Check-off based efficiency
-
-## Decision Points Needed:
-1. Context analysis rules (RELEVANT criteria)
-2. Git integration (branch strategy)
-3. Validation requirements (what blocks)
-4. Sync frequency (how often)
-5. Check-off system (implementation)
-6. Validator rewrite (for trunk-branch)
-
-## Why This Works:
-• **Isolation**: Work without interference
-• **Coordination**: Trunk keeps alignment
-• **Efficiency**: Only see what you need
-• **Scalability**: Unlimited parallel work
-• **Traceability**: Everything documented
-
-
-======================================================================
-======================================================================
 
 
 This is the COMPLETE system. Every piece connects. Every flow has purpose.

@@ -235,7 +235,6 @@ Agents capture ideas without getting distracted. Chris reviews during planning. 
 **What is this branch trying to accomplish?**
 - Primary goal: [One clear sentence]
 - Success criteria: [What defines completion]
-- Token budget: [Estimated tokens needed]
 
 ### STEP 2: Scan ALL Existing Branches
 **Review EVERY branch in the system:**
