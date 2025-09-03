@@ -260,6 +260,7 @@ Chris specified: "receive only the titles and maybe like a 5-7 word-ish summary"
 [Purpose: Track all sub-branch updates for dependency checking]
 
 ## Sub-Branch Updates:
+[MUST BE IN ALPHANUMERICAL ORDER - ALL BRANCHES LISTED]
 - A-1: 2025-09-01 | 15:30 EST
 - A-2: 2025-09-01 | 14:00 EST
 - A-3: [Never updated yet]
@@ -268,7 +269,7 @@ Chris specified: "receive only the titles and maybe like a 5-7 word-ish summary"
 - C-1: 2025-09-01 | 10:00 EST
 - C-2: 2025-09-01 | 08:00 EST
 - C-4: 2025-09-01 | 17:00 EST
-[Lists ALL sub-branches in order]
+[Lists ALL sub-branches in ALPHANUMERICAL order]
 ```
 
 **HOW it works:**
