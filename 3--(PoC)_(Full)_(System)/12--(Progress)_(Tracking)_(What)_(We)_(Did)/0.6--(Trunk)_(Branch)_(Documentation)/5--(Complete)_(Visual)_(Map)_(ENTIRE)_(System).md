@@ -540,6 +540,40 @@ When E-7 is blocked by stale A-6:
     └────────────────────┘
 ```
 
+## 🔴 CRITICAL: How Dependency Chains ACTUALLY Appear in O-F Files
+## (This was missing - From Doc 1 lines 246-253, Doc 3 lines 49-54)
+
+```markdown
+# EXACT FORMAT for Sub-Branch O-F Files:
+# Example: (E-7)_(Sub_Bnch)_(O-F).md
+
+## Dependency Chain:
+Direct dependencies: A-6
+A-6 depends on: C-4
+C-4 depends on: [none]
+Full chain: E-7 → A-6 → C-4
+
+## Last Sync Times:
+- A-6: Last synced 2025-09-01 | 10:00 EST
+- Status: ⚠️ STALE (A-6 updated at 12:00 EST)
+
+---
+
+# Another Example: (A-6)_(Sub_Bnch)_(O-F).md
+
+## Dependency Chain:
+Direct dependencies: C-4, D-1
+C-4 depends on: [none]
+D-1 depends on: B-3
+B-3 depends on: [none]
+Full chain: A-6 → [C-4] + [D-1 → B-3]
+
+## Last Sync Times:
+- C-4: Last synced 2025-09-01 | 10:00 EST
+- D-1: Last synced 2025-09-01 | 09:00 EST
+- Status: ✓ CURRENT
+```
+
 ## Master Timestamp Log (The Heartbeat)
 
 ```
@@ -1149,6 +1183,79 @@ Updates: C changes → check if affects C-F
    │ • Structure verification (all required files exist)   │
    └───────────────────────────────────────────────────────┘
 ```
+
+## 🔴 ADDITIONAL PENCILED ITEMS (FROM ALL 4 DOCS):
+
+### From Doc 1 (Architecture):
+
+**7. VERIFICATION PROTOCOL [Doc 1, lines 499-507]**
+   Status: Exact steps for trunk modification approval
+   Why it matters: Protects shared state from corruption
+   Options:
+   • Automatic with warnings
+   • Always require confirmation
+   • Smart detection of sensitive changes
+   Current thought: Agent prompts Chris for sensitive changes
+
+### From Doc 2 (Structure):
+
+**8. BRANCH ARCHIVAL [Doc 2, lines 463-467]**
+   Status: Where do completed branches go?
+   Options: Archive folder vs keeping in place with status marker
+   Consideration: Need to preserve work history
+
+**9. CROSS-PROJECT BRANCHES [Doc 2, lines 469-472]**
+   Status: Can branches span multiple PoC folders?
+   Context: If agent work touches multiple system parts
+   Current thought: Keep branches within single PoC folder
+
+### From Doc 3 (Operations):
+
+**10. CONFLICT RESOLUTION PROTOCOL [Doc 3, lines 758-761]**
+   Status: Exact steps when updates conflict
+   Context: Rare but critical when it happens
+   Current thought: Manual review with Chris
+
+**11. AGENT ASSIGNMENT METHOD [Doc 3, lines 768-771]**
+   Status: How agents know which branch to work on
+   Context: Need clear assignment mechanism
+   Current thought: Explicit in initial prompt
+
+### From Doc 4 (Advanced):
+
+**12. CONTEXT ANALYSIS GUIDELINES [Doc 4, lines 1007-1014]**
+   Status: Specific rules for what context to import
+   Considerations:
+   • Relevance threshold
+   • Stability requirements
+   • Version compatibility
+   Recommendation: Create relevance scoring system
+
+**13. DEPENDENCY VISUALIZATION [Doc 4, lines 1062-1065]**
+   Purpose: See context relationships graphically
+   Implementation: Generate graph from O-F references
+   Priority: Nice to have
+
+**14. AUTOMATED MERGE PROPOSALS [Doc 4, lines 1067-1070]**
+   Purpose: Suggest when branches should merge
+   Implementation: Analyze overlap and completion
+   Priority: Later phase
+
+**15. PERFORMANCE METRICS [Doc 4, lines 1072-1078]**
+   Purpose: Track system efficiency
+   Metrics:
+   • Context reuse rate
+   • Update propagation time
+   • Conflict frequency
+   Priority: After system stable
+
+**16. BRANCH TEMPLATES [Doc 4, lines 1080-1086]**
+   Purpose: Standardize common branch types
+   Templates:
+   • Feature branch template
+   • Bug fix branch template
+   • Integration branch template
+   Priority: After patterns emerge
 
 ## 🌆 EDGE CASES & GAPS (To discuss after PENCILED items):
 
