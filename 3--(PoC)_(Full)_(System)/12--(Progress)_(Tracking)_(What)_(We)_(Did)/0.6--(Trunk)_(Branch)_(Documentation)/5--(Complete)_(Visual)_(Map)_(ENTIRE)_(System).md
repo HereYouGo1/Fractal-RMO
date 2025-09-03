@@ -143,11 +143,16 @@ WITHOUT Pointer-Only Rule:          WITH Pointer-Only Rule:
 │   │   │               "A-2: Error Handling (Active)"
 │   │   │
 │   │   ├── 0.2--(Sub-Bnch)_(Propositions)/    [📝 WHERE AGENTS PROPOSE NEW BRANCHES]
-│   │   │   └── (Sub-Bnch)_(Propositions).md
-│   │   │       Template:
+│   │   │   └── (Sub-Bnch)_(Propositions).md   [🔴 ONE SHEET WITH ALL PROPOSALS!]
+│   │   │       Contains MULTIPLE proposals in ONE file:
 │   │   │       ### A-3: [Brief Description]
 │   │   │       **Proposed by:** Agent-X on [Date]
 │   │   │       **Why needed:** [4-5 sentences explaining deliverable]
+│   │   │       **Status:** [PROPOSED/APPROVED/REJECTED]
+│   │   │       
+│   │   │       ### A-4: [Another proposal]
+│   │   │       **Proposed by:** Agent-Y on [Date]
+│   │   │       **Why needed:** [4-5 sentences]
 │   │   │       **Status:** [PROPOSED/APPROVED/REJECTED]
 │   │   │
 │   │   ├── 1--(A)_(Main_Bnch)_(O-F)/
@@ -325,19 +330,28 @@ WITHOUT Pointer-Only Rule:          WITH Pointer-Only Rule:
     │     A-1: 2025-09-01 | 18:00 EST ← NEW TIME        │
     └───────────┬───────────────────────────────────────┘
                 ▼
-    ┌────────────────────────────────────────────────────┐
-    │  🟢 GIT COMMIT PROMPT (CHRIS'S RULE: EVERY UPDATE!)│
-    │                                                    │
-    │  Changes made:                                     │
-    │  • Updated A-1 sub-branch O-F                      │
-    │  • Added work history entry                        │
-    │  • Updated master timestamp                        │
-    │                                                    │
-    │  Suggested:                                        │
-    │  git add -A && git commit -m "A-1: Add tests"      │
-    │                                                    │
-    │  Run this? (or modify message)                     │
-    └───────────┬────────────────────────────────────────┘
+    ┌────────────────────────────────────────────────────────┐
+    │  🔴 GIT COMMIT MANDATORY (CHRIS'S RULE: EVERY UPDATE!)│
+    │                                                        │
+    │  Changes made:                                         │
+    │  • Updated A-1 sub-branch O-F                          │
+    │  • Added work history entry                            │
+    │  • Updated master timestamp                            │
+    │                                                        │
+    │  MUST RUN:                                             │
+    │  git add -A && git commit -m "2025-09-01: A-1: Add    │
+    │  tests and error handling"                            │
+    │                                                        │
+    │  Format: "YYYY-MM-DD: Branch-ID: What agent did"      │
+    │                                                        │
+    │  Example full workflow:                                │
+    │  $ git add -A                                          │
+    │  $ git commit -m "2025-09-01: A-1: Add tests"         │
+    │  $ git push origin main                                │
+    │  [Shows: 3 files changed, 47 insertions]              │
+    │                                                        │
+    │  [Prompt Chris every time - NO EXCEPTIONS]            │
+    └─────────────┬────────────────────────────────────────┘
                 ▼
          ╔═════════════╗
          ║ Continue?   ║─────YES───→ [Back to WORK]
