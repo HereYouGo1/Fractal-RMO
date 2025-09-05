@@ -5,6 +5,7 @@
 [Revised: 2025-09-01 | 04:30 EST | By: Claude-4.1-Opus]
 [Revised: 2025-09-01 | 09:30 EST | By: Claude-4.1-Opus | Major updates: master timestamp log, dependency chains, deliverable-based branches]
 [Revised: 2025-09-01 | 20:40 EST | By: Claude-4.1-Opus | Fixed: clarified system design, proper documentation protocol]
+[Revised: 2025-09-03 | 10:25 EST | By: Claude-4.1-Opus | Added: Complete Context Analysis Guidelines]
 [Document 3 of 4 in Trunk-Branch System Documentation]
 
 
@@ -36,13 +37,14 @@ This document explains EXACTLY how agents work within the trunk-branch system - 
 
 ### Step 2: Dependency Chain Check
 
-**Agent reads Master Timestamp Log:**
-```
-Path: 0.2--(Trunk)_(Branch)_(System)/0.2--(Master)_(Timestamp)_(Log)/(Master)_(Timestamp)_(Log).md
+**Agent checks Git for dependency updates:**
+```bash
+# Check when dependencies last updated
+git log --grep="O-F" --oneline --since="last-sync"
 ```
 
 **WHY this matters:**
-The master timestamp log tells you when EVERY sub-branch last updated. Without checking this, you might work with outdated context and create inconsistencies.
+Git commit history tells you when EVERY sub-branch last updated. Without checking this, you might work with outdated context and create inconsistencies.
 
 **Agent checks dependency chain:**
 If working on E-7, check its O-F file (O-F = Overview File - the main documentation for each branch):
@@ -97,27 +99,53 @@ Path: 2--(A-1)_(Sub_Bnch)_(O-F)/(A-1)_(Work)_(History)_(Index).md
 
 ## Update Procedures
 
-### Updating Sub-Branch O-F
+### Updating Sub-Branch O-F (NEW TASK-BASED STRUCTURE)
 
-**Every work session updates:**
+**Every work session updates the task tracking system:**
+
 ```markdown
-## SHORT-TERM MEMORY
-Entry 3: [New work today]
-Entry 2: [Previous Entry 3]
-Entry 1: [Previous Entry 2]
-[Delete old Entry 1]
+# (A-1)_(Sub_Bnch)_(O-F).md
 
-## CURRENT PHASE
-[What just completed]
+## DELIVERABLE DEFINITION
+[One clear sentence defining what this sub-branch produces]
 
-## NEXT PLANNED WORK
-[Immediate next task]
+## MASTER TASK BREAKDOWN
 
-## INSIGHTS (only if found gotcha)
-💡 **[Specific trap/issue]**
-- [One line problem]
-- [One line solution]
+### Task 1: [Major Component] [✅ COMPLETE or ⚠️ IN PROGRESS or 📋 PLANNED]
+**Sub-tasks:**
+- 1.1 [Specific implementation] [✅ or 🔄 CURRENT or 📋]
+  Summary: [What was built/decided if complete]
+  Insight: 💡 [Any gotcha or important discovery]
+- 1.2 [Another sub-task] [Status]
+  Summary: [Brief outcome if complete]
+
+### Task 2: [Next Major Component] [Status]
+**Sub-tasks:**
+[Same structure...]
+
+## DEPENDENCY CHAIN
+Direct dependencies: [Which branches this needs]
+[Branch] depends on: [Its dependencies]
+Full chain: [Complete dependency tree]
+Last sync commit: [Git commit hash when last checked dependencies]
+
+## SHARED CONTEXT SOURCES
+- [Branch-ID]: [What was imported] [Date/Time]
+  * [How it's being used]
+  * [Any adaptations made]
+
+## SHORT-TERM MEMORY (Recent Work)
+Entry 3: [Most recent work item]
+Entry 2: [Previous work]
+Entry 1: [Older work]
 ```
+
+**WHY This Structure:**
+• Tasks = Long-term memory (what's been done)
+• Progress indicators = Current position
+• Summaries = Quick context without reading work files
+• Insights = Attached to relevant work
+• Dependencies = Clear tracking with Git commit hash
 
 ### Updating Main Branch O-F
 
@@ -128,16 +156,17 @@ Entry 2: A-2 complete - Error handling done
 Entry 1: A-3 planned - Routing system next
 ```
 
-**Master Timestamp Log update (NOT individual branch logs):**
-```markdown
-# In 0.2--(Trunk)_(Branch)_(System)/0.2--(Master)_(Timestamp)_(Log)/(Master)_(Timestamp)_(Log).md
-- A-1: 2025-09-01 | 15:30 EST
-- A-2: 2025-09-01 | 14:00 EST
-[Update the timestamp for the sub-branch that just worked]
+**Git commit for tracking updates:**
+```bash
+# Commit your O-F changes with proper message
+git add "*O-F*.md"
+git commit -m "$(date '+%Y-%m-%d'): A-1: Updated O-F"
+
+# Now the timestamp is tracked in Git history
 ```
 
-**NOTE:** Individual branch timestamp logs REMOVED (Decision: 2025-09-01)
-All timestamps go in the master log for centralized tracking.
+**NOTE:** Master Timestamp Log DEPRECATED (Decision: 2025-09-04)
+All timestamps tracked via Git commit history.
 
 ### Updating Trunk O-F
 
@@ -221,87 +250,382 @@ Agents capture ideas without getting distracted. Chris reviews during planning. 
 
 **NOTE:** Branch creation authority = Agents propose, Chris decides (Decision: 2025-09-01)
 
-### Step 3: Detailed Context Requirement Protocol
+### Step 3: Complete Context Analysis Protocol
 
-**CRITICAL:** Chris specified this needs a structured analysis when creating any branch
+**CRITICAL:** This protocol runs BEFORE any coding begins and whenever new needs are discovered.
 
-**The Complete Protocol:**
+## Task Analysis Protocol (BEFORE Starting Work)
+
+### When This Triggers
+**MANDATORY:** Before starting ANY sub-task implementation
+**CRITICAL:** This prevents 95% of mid-task discoveries if done THOROUGHLY
+
+### The Analysis Process (EXHAUSTIVE - Not Half-Assed)
 
 ```markdown
-## DETAILED CONTEXT REQUIREMENT PROTOCOL
-## For: Creating Sub-Branch [BRANCH-ID]
+TASK: [What I'm about to implement]
 
-### STEP 1: Define Primary Objective
-**What is this branch trying to accomplish?**
-- Primary goal: [One clear sentence]
-- Success criteria: [What defines completion]
+## 1. FORCED DECOMPOSITION (Chris's Requirement)
+- Break into MICRO-STEPS (not vague components):
+  * Step 1: [Exact action, e.g., "Create error class"]
+  * Step 2: [Exact action, e.g., "Add retry decorator"]
+  * Step 3: [Each step should be 5-10 lines of code max]
+- Patterns required:
+  * [Specific pattern with implementation details]
+- Data flow:
+  * Input: [What comes in]
+  * Processing: [What happens]
+  * Output: [What goes out]
 
-### STEP 2: Scan ALL Existing Branches
-**Review EVERY branch in the system:**
+## 2. INTEGRATION POINT ANALYSIS (Critical)
+- Where this touches other code:
+  * [Branch X, line Y]: Will call this method
+  * [Branch Z]: Needs this error type
+  * [Branch W]: Shares this pattern
+- Potential conflicts:
+  * [What could break]
+  * [What might be incompatible]
 
-| Branch | Purpose | Relevance | Reason |
-|--------|---------|-----------|--------|
-| A-1 | Base agents | RELEVANT | Has class structure we need |
-| A-2 | Error handling | RELEVANT | Need error patterns |
-| A-3 | Routing | NOT RELEVANT | Different domain |
-| B-1 | User auth | MAYBE | Similar patterns |
-| B-2 | Data endpoints | NOT RELEVANT | Different focus |
-| C-1 | Database | RELEVANT | Need connection logic |
-| D | Logging | NOT RELEVANT | Will implement own |
+## 3. CONTEXT INVENTORY (What I Actually Have)
+From my O-F:
+- [Specific component, not "stuff from O-F"]
 
-### STEP 3: Evaluate What to Extract
-**For each RELEVANT branch, specify extraction:**
+From my dependencies:
+- [Exact import with version/timestamp]
 
-FROM A-1:
-- EXTRACT: Base class structure only
-- IGNORE: Agent-specific logic
-- REASON: Need foundation, not implementation
+From work history:
+- [Specific implementation, file, line number]
 
-FROM A-2:
-- EXTRACT: Error handling patterns
-- IGNORE: Agent-specific errors
-- REASON: Patterns applicable, specifics not
+## 4. GAP IDENTIFICATION (Be Paranoid)
+Missing (check thoroughly!):
+- [Component X doesn't exist - searched where?]
+- [Pattern Y undefined - checked which branches?]
+- [Decision Z needed - about what specifically?]
 
-FROM C-1:
-- EXTRACT: Connection pooling logic
-- IGNORE: Query implementations
-- REASON: Need connection management only
+## 5. ASSUMPTION DOCUMENTATION (No Hidden Assumptions)
+I'm assuming:
+- [List EVERY assumption, even "obvious" ones]
+- [E.g., "Auth tokens are strings"]
+- [E.g., "Errors can be serialized to JSON"]
+- [E.g., "Retry count is less than 10"]
 
-### STEP 4: Justify Context Imports
-**Why does this branch need external context?**
-- Without A-1 context: Would rebuild base class (waste)
-- Without A-2 context: Would create inconsistent error handling
-- Without C-1 context: Would duplicate connection logic
+Verified facts:
+- [What I've actually confirmed]
+- [Where I confirmed it]
 
-### STEP 5: Document in Branch O-F
-**Add to new branch's O-F file:**
-
-## Shared Context Sources
-[Document all imports with timestamps]
-
-### Full Context Imports:
-- B-1: Complete endpoint structure [2025-09-01 | 10:00 EST]
-  * Using as template for similar endpoints
-
-### Partial Context Imports:
-- A-1: Base class only [2025-09-01 | 09:30 EST]
-  * Extracting foundation, not logic
-- C-1: Connection pooling [2025-09-01 | 08:00 EST]
-  * Using connection management pattern
-
-### Context Dependencies:
-- Critical: C-1 (breaks if connection pattern changes)
-- Important: A-1 (inconsistent if base changes)
-- Informational: B-1 (helpful but not required)
+## 6. RESOLUTION PLAN (Complete Before Coding)
+- Import from [Branch] for [specific need]
+- Build [component] locally because [reason]
+- Research [unknown] before starting
+- FLAG FOR CHRIS: [Specific decision needed]
 ```
 
-**WHY This Protocol Exists:**
-Without structured analysis, branches either duplicate work (not checking what exists) or import too much (polluting their context). This protocol ensures efficient context reuse.
+**Why This THOROUGH Analysis Matters:**
+Chris's insight: "If the code you're writing has to do with your plan already, then shouldn't you already know what those gaps are?"
 
-**🔔 PENCILED: Specific evaluation criteria**
-• **What needs deciding:** Exact rules for RELEVANT vs NOT RELEVANT
-• **Why it matters:** Prevents over/under importing
-• **Chris's note:** "Guidelines have not yet been determined"
+The solution isn't mid-task checkpoints. It's making the upfront analysis ACTUALLY EXHAUSTIVE.
+
+**Signs of Half-Assed Analysis (DON'T DO THIS):**
+• "I need error handling from A-2" (Too vague!)
+• "Import auth stuff from B-3" (What specifically?)
+• "Use retry pattern" (Which one? How?)
+
+**Signs of PROPER Analysis:**
+• "Need BaseError class from A-2, lines 45-67, for inheritance"
+• "Import OAuth2 refresh method from B-3, not the full auth system"
+• "Use exponential backoff with 2^n seconds, max 3 retries, from B-3's pattern"
+
+## THE CONTEXT ANALYSIS GATES SYSTEM
+
+### When This Protocol Triggers
+
+**Trigger Point 1: New Sub-Branch Creation**
+```
+Agent proposes A-3 → Chris approves → Create structure
+→ MUST RUN CONTEXT ANALYSIS before any work
+```
+
+**Trigger Point 2: Task Analysis Reveals Needs (MECHANICAL TRIGGER)**
+```
+Run THOROUGH Task Analysis Protocol (see above)
+→ Analysis reveals: "Need retry logic but don't have it"
+→ RUN CONTEXT ANALYSIS GATES to find it
+→ Import it if found, build it if not
+```
+
+**Note:** LLMs DON'T spontaneously realize needs - the Task Analysis Protocol FORCES discovery
+
+**Trigger Point 3: Hitting a Blocker**
+```
+Can't proceed: "Need auth strategy but it doesn't exist"
+→ RUN PREREQUISITE PROCEDURE (Gate 0)
+→ Cannot continue until resolved
+```
+
+### The Gates System - Complete Details
+
+#### GATE 0: Prerequisites Check
+**What doesn't exist yet but I NEED to start?**
+
+```markdown
+Before you can even begin, list what's required:
+• "Need API specs defined" → Do they exist? Check indexes
+• "Need database schema" → Created yet? Scan branches
+• "Need auth strategy" → Documented? Search propositions
+
+If missing prerequisite found:
+→ STOP - Cannot proceed
+→ Document what's missing and why needed
+→ Either:
+   1. Research and document it (no assumptions!)
+   2. Propose new sub-branch to build it
+   3. Ask Chris for the missing information
+
+NEVER ASSUME OR GUESS - Get real answers
+```
+
+**Prerequisite Resolution Process:**
+```markdown
+When Gate 0 triggers:
+
+1. Document in handoff file:
+   ## BLOCKED - Missing Prerequisites
+   - Need: Database schema for users
+   - Why: Can't build user API without data structure
+   - Searched: C branch (not found)
+   - Proposed: C-5 for schema design
+
+2. Check propositions sheet:
+   Path: [Main_Branch]/0.2--(Sub-Bnch)_(Propositions)/
+   - Maybe someone already proposed it?
+   - Status: PROPOSED/APPROVED/REJECTED?
+
+3. If not proposed, add proposition:
+   ### C-5: Database Schema Design
+   **Proposed by:** [Agent] on [Date/Time]
+   **Why needed:** B-2 needs schema before building endpoints.
+   This deliverable would define all tables, relationships,
+   and constraints for the user management system.
+   **Status:** PROPOSED [Awaiting Chris]
+
+4. If research needed instead:
+   - Document research requirements
+   - Do the research (check docs, standards, etc.)
+   - Document findings in work history
+   - NO ASSUMPTIONS - only documented facts
+```
+
+#### GATE 1: Necessity Check
+**What do I NEED to complete my deliverable?**
+
+```markdown
+Scan indexes to find what exists:
+
+1. Check Main Branch Index:
+   Path: 0.1--(Index)_(Main_Bnchs)/
+   Quick scan: A=Agents, B=API, C=Database
+
+2. Check relevant Sub-Branch Indexes:
+   Path: [Branch]/0.1--(Index)_(Sub-Bnchs)/
+   See deliverables: A-1 (base), A-2 (errors)
+
+3. For promising branches, check Work History Index:
+   Path: [Sub-Branch]/(X-N)_(Work)_(History)_(Index).md
+   5-7 word summaries show what's built
+
+List your NEEDS:
+• "Must have base class to extend"
+• "Must have auth logic for API calls"
+• "Must have user models"
+
+If branch has something you NEED → RELEVANT
+Cannot complete without it → RELEVANT
+```
+
+#### GATE 2: Optimization Check  
+**What would make my deliverable BETTER?**
+
+```markdown
+While scanning, note optimizations:
+• "Logging would help debugging"
+• "Caching would improve performance"
+• "Retry logic would add resilience"
+
+These aren't required but would improve quality.
+
+If branch offers optimization → RELEVANT (mark as optional)
+Document why it would help
+```
+
+#### GATE 3: Duplication Check
+**Does this already exist somewhere?**
+
+```markdown
+Before building ANYTHING:
+1. Quick scan of all indexes
+2. Check if another branch built it
+3. Even partial implementations count
+
+If it exists → RELEVANT (import it)
+Why build something twice? That's stupid.
+
+Examples:
+• About to build retry logic? B-3 has it!
+• Creating error types? A-2 defined them!
+• Need logging? D already built it!
+```
+
+#### GATE 4: Uncertainty Check
+**Not sure if something would help?**
+
+```markdown
+Can't decide if Branch X's feature Y is useful?
+
+→ FLAG FOR CHRIS:
+"Chris, I'm building [deliverable].
+Branch X has [feature Y].
+Should I import it for [purpose]?"
+
+Chris decides, not you.
+This prevents bad architecture decisions.
+```
+
+### The Extraction Rules
+
+**CORE PRINCIPLE:**
+> "Extract ONLY what you cited as the reason for relevance."
+
+```markdown
+## How to Extract:
+
+1. Look at WHY you marked it RELEVANT:
+   - Said "need auth flow" → Take ONLY auth flow
+   - Said "need base class" → Take ONLY class structure
+   - Said "need models" → Take ONLY model definitions
+
+2. Leave behind:
+   - Implementation details specific to that branch
+   - Their domain-specific logic
+   - Their test data
+   - Their error messages
+   - Anything NOT cited as needed
+
+3. Document what you took:
+   ## Shared Context Sources:
+   - B-3: Auth flow sequence [2025-09-01 | 14:00 EST]
+     * Took: OAuth2 flow steps
+     * Left: Actual implementation
+     * Why: Need the pattern, not the code
+```
+
+### Warning Signs (Smell Test)
+
+```markdown
+## 🚨 Over-importing Warning:
+- Importing from >4 branches
+- Context files getting huge
+- Taking entire files instead of pieces
+→ Review with Chris
+
+## 🚨 Under-importing Warning:
+- Zero imports (unless truly standalone)
+- Rebuilding existing solutions
+- Spending hours on solved problems
+→ Re-run duplication check
+```
+
+### Complete Example: Creating A-3 (Error Recovery)
+
+```markdown
+## RUNNING CONTEXT ANALYSIS FOR A-3
+
+### GATE 0 - Prerequisites:
+Need: Error scenarios documented
+Check: Scanning indexes... NOT FOUND
+Action: Research common agent failures
+[Research completed, documented in work history]
+✓ Gate 0 passed
+
+### GATE 1 - Necessity:
+Scanning for NEEDS:
+• Base agent structure → A-1 has it ✓ RELEVANT
+• Error types defined → A-2 has them ✓ RELEVANT
+• Must-have items found
+
+### GATE 2 - Optimization:
+Scanning for improvements:
+• Logging for errors → D has patterns ✓ RELEVANT (optional)
+• Retry for transient failures → B-3 has logic ✓ RELEVANT (optional)
+
+### GATE 3 - Duplication:
+About to build:
+• Error recovery system → Checking... doesn't exist ✓
+• Retry mechanism → Wait, B-3 has this! Import it
+
+### GATE 4 - Uncertainty:
+• C-4 has caching... should failures be cached?
+→ ASKING CHRIS: "Should error recovery cache failed requests?"
+
+### EXTRACTION PLAN:
+FROM A-1:
+- TAKE: Base class structure only
+- LEAVE: Agent-specific methods
+- REASON: Need skeleton to add recovery to
+
+FROM A-2:
+- TAKE: Error type definitions
+- LEAVE: Error handling implementation
+- REASON: Need types, not their handling
+
+FROM B-3:
+- TAKE: Retry logic pattern
+- LEAVE: API-specific implementation
+- REASON: Need approach, not specifics
+
+FROM D (optional):
+- TAKE: Logging interface
+- LEAVE: Log formatting details
+- REASON: Want consistent logging
+
+### DOCUMENTING IN A-3 O-F:
+## Shared Context Sources:
+
+### Required Imports:
+- A-1: Base agent class [2025-09-01 | 12:00 EST]
+  * Extracted: Class structure only
+- A-2: Error types [2025-09-01 | 11:00 EST]
+  * Extracted: Type definitions
+
+### Optional Imports:
+- B-3: Retry patterns [2025-09-01 | 14:00 EST]
+  * Extracted: Retry logic approach
+- D: Logging [2025-09-01 | 09:00 EST]
+  * Extracted: Logging interface
+
+### Pending Chris Decision:
+- C-4 caching for failed requests?
+
+## Dependency Chain:
+Direct dependencies: A-1, A-2, B-3, D
+A-1 depends on: [none]
+A-2 depends on: A-1
+B-3 depends on: B-1
+D depends on: [none]
+Full chain: A-3 → [A-1, A-2 → A-1, B-3 → B-1, D]
+```
+
+### Managing Dependencies
+
+**IMPORTANT:** Mutual dependencies ARE allowed (Chris's clarification)
+```markdown
+A can need B while B needs A - this is fine!
+System handles through:
+• Proper abstraction layers
+• Shared component branches
+• Clear bidirectional documentation
+
+Not about preventing circles, but managing them.
+```
 
 ### Step 4: Create Branch Structure (After Chris Approves)
 
@@ -532,6 +856,59 @@ Step 5: Git commit prompt
 ------------------------------------------------------
 
 ## Git Integration Procedures
+
+### Git Strategy - FINALIZED DECISION
+
+**Architecture Decision:** Single Git branch (master/main)
+• All documentation branches exist as folders
+• NO separate Git branches for documentation
+• Simple, visible, no branch switching
+
+### Two-Commit Workflow (REQUIRED)
+
+**The Problem:** 
+When committing everything together, diffs show work history changes mixed with O-F updates, creating noise.
+
+**The Solution:**
+Two separate commits per work session:
+
+```bash
+# COMMIT 1: Work files
+git add "[work_history_folder]/*" "[implementation_files]"
+git commit -m "$(date '+%Y-%m-%d'): A-1: Implementation work"
+
+# Update your O-F file with progress
+
+# COMMIT 2: O-F file only  
+git add "*O-F*.md"
+git commit -m "$(date '+%Y-%m-%d'): A-1: Updated O-F"
+git push origin master
+```
+
+### Dependency Checking via Git
+
+**Old Way (Master Timestamp Log):**
+• Check central log file
+• See when each branch updated
+• 20 dependencies = reading massive file
+
+**New Way (Git-powered):**
+```bash
+# See all O-F updates across project
+git log --grep="O-F" --oneline --since="2025-09-01"
+
+# Check specific dependency changes
+git diff [last-sync-commit] HEAD -- "path/to/dependency/O-F.md"
+```
+
+**Each O-F stores:**
+```markdown
+Last sync commit: abc123def
+```
+
+**Benefits at Scale:**
+• 5 dependencies: Check via Git = 100 tokens vs 3,000 tokens
+• 20 dependencies: Check via Git = 200 tokens vs 15,000 tokens!
 
 ### When to Prompt for Git Commit (EVERY UPDATE!)
 

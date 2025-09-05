@@ -5,6 +5,7 @@
 [Revised: 2025-09-01 | 04:25 EST | By: Claude-4.1-Opus]
 [Revised: 2025-09-01 | 09:00 EST | By: Claude-4.1-Opus | Major updates: folder rename, master timestamp log, sub-branch propositions]
 [Revised: 2025-09-01 | 20:35 EST | By: Claude-4.1-Opus | Fixed: folder naming with underscores, clarified system design]
+[Revised: 2025-09-03 | 10:20 EST | By: Claude-4.1-Opus | Added: How Context Analysis uses structure]
 [Document 2 of 4 in Trunk-Branch System Documentation]
 
 
@@ -39,8 +40,8 @@ This document shows EXACTLY where every file lives in the trunk-branch system, h
 │   ├── 0.1--(Index)_(Main_Bnchs)/           [Index of MAIN branches]
 │   │   └── (Index)_(Main_Bnchs).md
 │   │
-│   ├── 0.2--(Master)_(Timestamp)_(Log)/     [NEW: Replaces all individual logs]
-│   │   └── (Master)_(Timestamp)_(Log).md
+│   ├── 0.2--(Master)_(Timestamp)_(Log)/     [⚠️ DEPRECATED - Git replaced this]
+│   │   └── (Master)_(Timestamp)_(Log).md    [No longer used - Git tracks all timestamps]
 │   │
 │   ├── 0.3--(LLM)_(Limitations)_(Discovered)/  [Project-wide LLM failure patterns]
 │   │   └── (LLM)_(Limitations)_(Discovered).md
@@ -64,7 +65,7 @@ This document shows EXACTLY where every file lives in the trunk-branch system, h
 │   │   ├── 2--(A-1)_(Sub_Bnch)_(O-F)/       [Sub-branch A-1]
 │   │   │   ├── (A-1)_(Sub_Bnch)_(O-F).md
 │   │   │   ├── (A-1)_(Work)_(History)_(Index).md [5-7 word summaries!]
-│   │   │   ├── (A-1)_(Handoff)_(Status).md  [NEW: Session continuity file]
+│   │   ├── (A-1)_(Handoff)_(Status).md  [Minimal with new O-F]
 │   │   │   ├── 1--(A-1)_(Setup)_(Initial)/
 │   │   │   │   └── (A-1)_(Setup)_(Initial).md
 │   │   │   └── 2--(A-1)_(Implementation)_(Core)/
@@ -73,7 +74,7 @@ This document shows EXACTLY where every file lives in the trunk-branch system, h
 │   │   └── 3--(A-2)_(Sub_Bnch)_(O-F)/       [Sub-branch A-2]
 │   │       ├── (A-2)_(Sub_Bnch)_(O-F).md
 │   │       ├── (A-2)_(Work)_(History)_(Index).md
-│   │       ├── (A-2)_(Handoff)_(Status).md  [NEW: Session continuity file]
+│       ├── (A-2)_(Handoff)_(Status).md  [Minimal with new O-F]
 │   │       └── [Work history files...]
 │   │
 │   ├── 3--(B)_(Main_Bnch)_(O-F)/            [Main branch B]
@@ -137,6 +138,141 @@ Note: Original C and F branches remain intact
 
 ------------------------------------------------------
 
+## THE NEW TASK-BASED O-F STRUCTURE (CRITICAL - THIS IS THE STANDARD)
+
+### The Revolution in Sub-Branch Documentation
+
+**THE PROBLEM:** Old O-F structure gave agents no real context - just 3 recent items and vague status
+**THE SOLUTION:** Task-based structure that serves as complete project management AND context system
+
+### The NEW Standard Sub-Branch O-F Format:
+
+```markdown
+# (A-1)_(Sub_Bnch)_(O-F).md
+
+## DELIVERABLE DEFINITION
+[One clear sentence defining what this sub-branch produces]
+Example: "Build base agent classes with OpenAI and Anthropic support"
+
+## MASTER TASK BREAKDOWN
+
+### Task 1: [Major Component] [✅ COMPLETE or ⚠️ IN PROGRESS or 📋 PLANNED]
+**Sub-tasks:**
+- 1.1 [Specific implementation] [✅ or 🔄 CURRENT or 📋]
+  Summary: [What was built/decided if complete]
+  Insight: 💡 [Any gotcha or important discovery]
+- 1.2 [Another sub-task] [Status]
+  Summary: [Brief outcome if complete]
+
+### Task 2: [Next Major Component] [Status]
+**Sub-tasks:**
+- 2.1 [Implementation detail] [Status]
+  Summary: [Outcome]
+- 2.2 [Another detail] [Status]
+
+### Task 3: [Another Component] [Status]
+**Sub-tasks:**
+[Continue pattern...]
+
+## DEPENDENCY CHAIN
+Direct dependencies: [Which branches this needs]
+[Branch] depends on: [Its dependencies]
+Full chain: [Complete dependency tree]
+Last sync commit: [Git commit hash when last checked dependencies]
+
+## SHARED CONTEXT SOURCES
+- [Branch-ID]: [What was imported] [Date/Time]
+  * [How it's being used]
+  * [Any adaptations made]
+
+## SHORT-TERM MEMORY (Recent Work)
+Entry 3: [Most recent work item]
+Entry 2: [Previous work]
+Entry 1: [Older work]
+```
+
+### Real Example of Task-Based O-F:
+
+```markdown
+# (A-1)_(Sub_Bnch)_(O-F).md
+
+## DELIVERABLE DEFINITION
+Build base agent classes with OpenAI and Anthropic support
+
+## MASTER TASK BREAKDOWN
+
+### Task 1: Environment Setup ✅ COMPLETE
+**Sub-tasks:**
+- 1.1 Virtual environment creation ✅
+  Summary: Python 3.12 venv with Poetry
+- 1.2 Dependency installation ✅
+  Summary: OpenAI, Anthropic, asyncio packages
+  Insight: 💡 Python 3.13 breaks asyncio - stick to 3.12
+- 1.3 Project structure ✅
+  Summary: Created agents/, tests/, configs/ folders
+
+### Task 2: Base Agent Class ⚠️ IN PROGRESS
+**Sub-tasks:**
+- 2.1 Abstract base class ✅
+  Summary: Created BaseAgent with required methods
+- 2.2 OpenAI implementation ✅
+  Summary: Subclass with GPT-4 integration
+  Insight: 💡 Rate limiting at 10 req/min on free tier
+- 2.3 Anthropic implementation 🔄 CURRENT
+  Notes: Working on Claude integration
+- 2.4 Error handling patterns 📋 PLANNED
+- 2.5 Async/await structure 📋 PLANNED
+
+### Task 3: Testing Framework 📋 PLANNED
+**Sub-tasks:**
+- 3.1 Unit test structure
+- 3.2 Mock LLM responses
+- 3.3 Integration tests
+
+## DEPENDENCY CHAIN
+Direct dependencies: B-3 (auth patterns)
+B-3 depends on: C-1 (database)
+Full chain: A-1 → B-3 → C-1
+Last sync commit: abc123def
+
+## SHARED CONTEXT SOURCES
+- B-3: OAuth2 patterns [2025-09-01 | 14:00 EST]
+  * Using token refresh approach
+  * Adapted error types to AgentError
+
+## SHORT-TERM MEMORY
+Entry 3: Debugging Anthropic API connection
+Entry 2: Added retry decorator from B-3
+Entry 1: Fixed async context manager issue
+```
+
+### Why This Structure is Revolutionary:
+
+**Solves Context Engineering Gap:**
+• Agents see EXACTLY what the deliverable is
+• Complete roadmap of all work (past and future)
+• Current position clearly marked (🔄 CURRENT)
+• Insights attached to relevant tasks, not floating
+• Dependencies tracked with Git commit hashes
+
+**Three Birds with One Stone:**
+1. **Long-term memory** - The task list IS the memory
+2. **Current position** - See exactly where we are
+3. **Context at right level** - Summaries where needed
+
+**Impact on Other Files:**
+• **Handoff files become minimal** - Just point to current task position
+• **Work History still valuable** - For deep dives into specific implementations
+• **O-F becomes single source of truth** - Everything important is here
+
+**Chris's Vision Realized:**
+> "This might negate what's needed in the Handoff file in general"
+
+Exactly right - the comprehensive task structure means handoffs just say "I'm at Task 2.3, blocked on X"
+
+
+------------------------------------------------------
+
 ## Branch Naming System
 
 ### Main Branches
@@ -184,9 +320,9 @@ B-3 = Admin endpoints
 **Location:** Inside each sub-branch folder
 ```
 2--(A-1)_(Sub_Bnch)_(O-F)/
-├── (A-1)_(Sub_Bnch)_(O-F).md
+├── (A-1)_(Sub_Bnch)_(O-F).md             [Now contains task-based structure - THE source of truth]
 ├── (A-1)_(Work)_(History)_(Index).md     [CRITICAL: 5-7 word summaries!]
-├── (A-1)_(Handoff)_(Status).md          [NEW: Session continuity file]
+├── (A-1)_(Handoff)_(Status).md          [MINIMAL - just points to current task in O-F]
 ├── 1--(A-1)_(Setup)_(Initial)/           [Work history 1 - EXAMPLE NAME]
 │   └── (A-1)_(Setup)_(Initial).md
 ├── 2--(A-1)_(Implementation)_(Core)/     [Work history 2 - EXAMPLE NAME]
@@ -210,6 +346,8 @@ B-3 = Admin endpoints
 
 **WHY 5-7 words?**
 Chris specified: "receive only the titles and maybe like a 5-7 word-ish summary" - this keeps indexes scannable while providing enough context to find specific work.
+
+**Note:** With new task-based O-F structure, agents primarily get context from O-F task breakdown, using work history only for deep dives into specific implementations.
 
 **WRONG Index Format (Too detailed):**
 ```markdown
@@ -245,39 +383,26 @@ Chris specified: "receive only the titles and maybe like a 5-7 word-ish summary"
 
 ## Special Files and Logs
 
-### Master Timestamp Log (REPLACES Individual Branch Logs)
+### Master Timestamp Log (DEPRECATED)
 
-**Purpose:** Single source of truth for ALL sub-branch update times
+**Status:** DEPRECATED as of 2025-09-04
+**Replaced by:** Git commit history
 
-**Location:** 
-```
-0.2--(Trunk)_(Branch)_(System)/0.2--(Master)_(Timestamp)_(Log)/(Master)_(Timestamp)_(Log).md
-```
+**Old Purpose:** Single source of truth for ALL sub-branch update times
+**New System:** Git tracks all updates via commit history
 
-**Format:**
-```markdown
-# Master Timestamp Update Log
-[Purpose: Track all sub-branch updates for dependency checking]
+**Each O-F file now stores:**
+• Last sync commit: [git commit hash]
 
-## Sub-Branch Updates:
-[MUST BE IN ALPHANUMERICAL ORDER - ALL BRANCHES LISTED]
-- A-1: 2025-09-01 | 15:30 EST
-- A-2: 2025-09-01 | 14:00 EST
-- A-3: [Never updated yet]
-- B-1: 2025-09-01 | 16:00 EST
-- B-2: 2025-09-01 | 11:00 EST
-- C-1: 2025-09-01 | 10:00 EST
-- C-2: 2025-09-01 | 08:00 EST
-- C-4: 2025-09-01 | 17:00 EST
-[Lists ALL sub-branches in ALPHANUMERICAL order]
-```
+**To check updates:**
+• Use: `git log --grep="O-F" --oneline`
+• Not: Master Timestamp Log
 
-**HOW it works:**
-1. When any sub-branch updates, it writes timestamp here
-2. When agents check dependencies, they read this single file
-3. No need for branch-specific timestamp logs anymore
+**Migration:**
+• Existing timestamp log can be deleted after migration
+• All timestamp tracking now through Git commits
 
-**NOTE:** Individual branch timestamp logs at 0.2 position REMOVED (Decision: 2025-09-01)
+**NOTE:** Individual branch timestamp logs at 0.2 position REMOVED. All timestamps now tracked via Git commits. No branch-specific timestamp files needed.
 
 
 ### Branch Index Files
@@ -324,11 +449,12 @@ Content:
 - B-3: Authentication logic [Timestamp: 2025-09-01 | 10:00 EST]
 - C-4: Database connections [Timestamp: 2025-09-01 | 09:30 EST]
 - D: Complete error handling patterns [Timestamp: 2025-09-01 | 08:00 EST]
+- Last sync commit: abc123def  [← ADD THIS LINE]
 ```
 
 **Update checking:**
-A-1 checks: `0.2--(Trunk)_(Branch)_(System)/0.2--(Master)_(Timestamp)_(Log)/`
-To see if B-3 updated after 10:00 EST
+A-1 no longer checks Master Timestamp Log
+Instead uses: `git diff [last-sync-commit] HEAD -- "B-3_folder/"`
 
 
 ------------------------------------------------------
@@ -425,7 +551,7 @@ mkdir -p "2--(A)_(Main_Bnch)_(O-F)/0.1--(Index)_(Sub-Bnchs)"
 mkdir -p "2--(A)_(Main_Bnch)_(O-F)/0.2--(Sub-Bnch)_(Propositions)"
 mkdir -p "2--(A)_(Main_Bnch)_(O-F)/1--(A)_(Main_Bnch)_(O-F)"
 mkdir -p "2--(A)_(Main_Bnch)_(O-F)/2--(A-1)_(Sub_Bnch)_(O-F)"
-# NOTE: No timestamp log folder - using master timestamp log instead
+# NOTE: No timestamp log folder - Git commit history handles all timestamp tracking
 ```
 
 
@@ -449,6 +575,113 @@ mkdir -p "2--(A)_(Main_Bnch)_(O-F)/2--(A-1)_(Sub_Bnch)_(O-F)"
 • Main branches: Single letter
 • Sub-branches: Letter-Number
 • All use underscores and parentheses
+
+
+------------------------------------------------------
+
+## How Context Analysis Uses This Structure
+
+### The Scanning Process
+
+**When agents run Context Analysis Protocol, they navigate:**
+
+1. **Start at Main Branch Index**
+   ```
+   Path: 0.1--(Index)_(Main_Bnchs)/(Index)_(Main_Bnchs).md
+   Purpose: Quick overview of all domains
+   Example: "A = Agent System, B = API, C = Database"
+   ```
+
+2. **Check Sub-Branch Indexes for relevant branches**
+   ```
+   Path: [Branch]/0.1--(Index)_(Sub-Bnchs)/(Index)_(Sub-Bnchs).md
+   Purpose: See what deliverables exist in each domain
+   Example: "A-1: Base agents (Complete), A-2: Error handling (Active)"
+   ```
+
+3. **Scan Work History Indexes for specifics**
+   ```
+   Path: [Sub-Branch]/(X-N)_(Work)_(History)_(Index).md
+   Purpose: 5-7 word summaries reveal what's been built
+   Example: "3. Testing Validation - Created unit tests fixed bugs"
+   ```
+
+4. **Only read full O-F files for RELEVANT branches**
+   ```
+   Don't waste time reading everything
+   Indexes give targeting information
+   Read details only after marking RELEVANT
+   ```
+
+### Prerequisites and Propositions
+
+**When Gate 0 triggers (missing prerequisites):**
+
+1. **Check Proposition Sheets first**
+   ```
+   Path: [Main_Branch]/0.2--(Sub-Bnch)_(Propositions)/(Sub-Bnch)_(Propositions).md
+   Why: Someone might have already proposed what you need
+   Status check: PROPOSED, APPROVED, REJECTED, CREATED
+   ```
+
+2. **If not proposed, add your proposition**
+   ```
+   Add to the SINGLE propositions file (not separate files)
+   Include: What's needed, why, deliverable description
+   Flag for Chris review
+   ```
+
+### Master Timestamp Log for Dependencies
+
+**Critical for lazy updates:**
+```
+Path: 0.2--(Master)_(Timestamp)_(Log)/(Master)_(Timestamp)_(Log).md
+Use: Check when ANY sub-branch last updated
+Format: Alphanumerical list with timestamps
+Purpose: Detect stale dependencies without reading everything
+```
+
+### Context Documentation Location
+
+**Where context imports get recorded:**
+```
+In each Sub-Branch O-F:
+  ## Shared Context Sources:
+  - Lists what was imported
+  - When it was imported (timestamp)
+  - Why it was needed
+  - What was extracted vs ignored
+
+In Handoff Files:
+  ## Dependencies:
+  - Current import status
+  - What needs updating
+  - Blocking dependencies
+```
+
+### The Efficiency Pattern
+
+**Why this structure enables fast context analysis:**
+
+1. **Indexes prevent reading everything**
+   • Main index: 30 seconds to scan all branches
+   • Sub indexes: Find relevant work instantly
+   • Work indexes: 5-7 word summaries = quick targeting
+
+2. **Propositions prevent duplicate work**
+   • See what's already planned
+   • Avoid creating redundant branches
+   • Track approval status
+
+3. **Master timestamp enables lazy updates**
+   • One file shows all update times
+   • Quick staleness detection
+   • No cascading reads needed
+
+4. **O-F files contain extraction details**
+   • What to take from each import
+   • Clear documentation trail
+   • No guesswork needed
 
 
 ------------------------------------------------------

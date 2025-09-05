@@ -5,6 +5,7 @@
 [Revised: 2025-09-01 | 04:20 EST | By: Claude-4.1-Opus]
 [Revised: 2025-09-01 | 08:45 EST | By: Claude-4.1-Opus | Major updates: dependency chains, deliverable-based branches]
 [Revised: 2025-09-01 | 20:30 EST | By: Claude-4.1-Opus | Fixed: removed token refs, clarified system design]
+[Revised: 2025-09-03 | 10:15 EST | By: Claude-4.1-Opus | Added: Context Analysis Guidelines philosophy]
 [Document 1 of 4 in Trunk-Branch System Documentation]
 
 
@@ -505,11 +506,138 @@ Scoped insights → Relevant to domain → Efficiency
 • Smart detection of sensitive changes
 **Current thought:** Agent prompts Chris for sensitive changes
 
+### Context Analysis Guidelines
+**RESOLVED (2025-09-03):** Complete guidelines developed
+• Gates system for evaluating relevance
+• Extraction rules based on cited needs
+• Prerequisites handling for missing components
+• See full details in Document 3 Operations Manual
+
 ### Git Integration Strategy
-**What needs deciding:** How git relates to documentation branches
-**Why it matters:** Version control alignment
-**Chris's note:** "I don't know much about Git so will have to look into it"
-**Starting point:** Prompt for commits on all updates
+**RESOLVED (2025-09-04):** Single Git branch approach with two-commit system
+
+**Architecture Decision:** 
+• Use master/main branch only - all doc branches as folders
+• NO separate Git branches for documentation
+• Simpler than multiple Git branches, no branch switching needed
+• All documentation visible at once
+
+**The Two-Commit System (CRITICAL FOR CLEAN DIFFS):**
+
+**Why Two Commits?**
+When committing everything together, diffs show work history changes mixed with O-F updates, creating noise that makes it hard to see what actually changed in the documentation structure.
+
+**Implementation:**
+```bash
+# COMMIT 1: Work files (actual work done)
+git add "[work_history_folder]/*" "[implementation_files]"
+git commit -m "$(date '+%Y-%m-%d'): A-1: Implementation work"
+
+# Now update your O-F file with task progress
+
+# COMMIT 2: O-F files only (documentation structure)
+git add "*O-F*.md"
+git commit -m "$(date '+%Y-%m-%d'): A-1: Updated O-F"
+
+# Push both commits
+git push origin master
+```
+
+**Dependency Checking via Git:**
+```bash
+# See all O-F updates across project
+git log --grep="O-F" --oneline --since="last-sync"
+
+# Check if specific dependency changed
+git diff [last-sync-commit] HEAD -- "path/to/dependency/O-F.md"
+```
+
+**Each O-F Stores Its Last Sync:**
+```markdown
+Last sync commit: abc123def
+```
+
+**Benefits at Scale:**
+• 5 dependencies: Check via Git = 100 tokens vs 3,000 tokens reading files
+• 20 dependencies: Check via Git = 200 tokens vs 15,000 tokens!
+• Master Timestamp Log DEPRECATED - Git commit history replaces it entirely
+
+**Commit Message Format:**
+```
+YYYY-MM-DD: [Branch-ID]: [Action] [Component]
+Example: 2025-09-04: A-1: Updated task breakdown
+```
+
+
+------------------------------------------------------
+
+## Context Analysis Philosophy
+
+### Why Agents Need Structured Guidelines
+
+**The Core Problem:**
+Without clear rules, agents face two failure modes:
+• **Over-importing:** Grabbing everything that might be useful, polluting their context with irrelevant code
+• **Under-importing:** Missing existing solutions, rebuilding what's already been built
+
+Both waste resources and create inconsistencies.
+
+### The Balance Point
+
+**The fundamental principle:**
+> "If it exists and you need it, use it. Don't build it twice."
+
+This simple rule drives everything, but applying it requires structured thinking:
+1. **Know what you need** - Both required and optimal components
+2. **Find what exists** - Efficient scanning via indexes
+3. **Take only what's relevant** - Extract specific pieces, not entire implementations
+4. **Handle what's missing** - No assumptions, get real answers
+
+### Prerequisites: The Hidden Blocker
+
+**A critical insight:**
+Sometimes what you need doesn't exist yet. This isn't a failure - it's a discovery. When agents hit missing prerequisites:
+• They must stop and document what's needed
+• Either research to fill the gap
+• Or propose new sub-branches to build it
+• Never assume or guess
+
+### The Extraction Principle
+
+**Key rule:**
+> "Extract ONLY what you cited as the reason for relevance."
+
+If you said you need "auth flow", take the auth flow - not the entire auth system. This prevents context pollution while ensuring necessary reuse.
+
+### Managing Dependencies
+
+**Important clarification:**
+Mutual dependencies CAN exist (A needs B, B needs A). The system handles this through:
+• Proper abstraction layers
+• Shared component branches
+• Clear documentation of bidirectional needs
+
+The goal isn't to prevent all circular references, but to manage them consciously.
+
+### The Gates System
+
+Agents evaluate branches through sequential gates:
+• **Gate 0:** Prerequisites - What doesn't exist but I need?
+• **Gate 1:** Necessity - What must I have?
+• **Gate 2:** Optimization - What would make it better?
+• **Gate 3:** Duplication - Does this already exist?
+• **Gate 4:** Uncertainty - Should I ask Chris?
+
+This creates a repeatable, mechanical process that removes guesswork.
+
+### When Context Analysis Happens
+
+**Three trigger points:**
+1. **Sub-branch creation** - Before any work begins
+2. **During work** - When discovering new needs
+3. **Hitting blockers** - When prerequisites are missing
+
+This ensures context is always evaluated, never assumed.
 
 
 ------------------------------------------------------

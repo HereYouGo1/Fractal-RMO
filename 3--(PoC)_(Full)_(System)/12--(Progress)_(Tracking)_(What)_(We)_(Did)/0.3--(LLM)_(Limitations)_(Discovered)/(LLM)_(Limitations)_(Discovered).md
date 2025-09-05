@@ -1,7 +1,7 @@
 # 🔴 LLM LIMITATIONS DISCOVERED
 ## Ongoing Tracking of Failure Patterns
 
-[Last Updated: 2025-08-31 | 03:15 | By: Claude]
+[Last Updated: 2025-09-05 | 04:45 | By: Claude (User Report)]
 
 ======================================================================
 ======================================================================
@@ -141,6 +141,53 @@ Use absolute paths or explicit `cd` before each operation
 LLMs forget stateful changes like directory navigation
 
 
+----------------------------------------------------------------------
+
+
+### Incomplete Overwrites in Large Document Updates
+**Date Discovered:** 2025-09-05
+**Agent:** User Report
+**Category:** Large Document Processing
+
+**WHAT HAPPENED:**
+When updating large documents (10-20k tokens), LLMs make additive changes without overwriting existing content unless explicitly instructed to replace
+
+**ROOT CAUSE:**
+LLMs struggle to maintain comprehensive document awareness at scale. Attention mechanisms can't effectively track all content needing replacement in large contexts (60k+ tokens)
+
+**WORKAROUND:**
+- Explicitly specify that content should be overwritten, not just updated
+- Use another LLM to review and identify missed overwrites
+- Multiple review passes (2+ times) significantly improve accuracy
+
+**PATTERN:**
+LLMs default to additive edits rather than replacements in large documents unless given explicit overwrite instructions
+
+
+----------------------------------------------------------------------
+
+
+### Cross-Documentation Propagation Failures  
+**Date Discovered:** 2025-09-05
+**Agent:** User Report
+**Category:** Large Document Processing
+
+**WHAT HAPPENED:**
+When asked to "put changes in wherever relevant" across large documentation sets, LLMs fail to catch all applicable locations ~90% of the time
+
+**ROOT CAUSE:**
+Inability to maintain global awareness across multiple large documents simultaneously. Model attention gets overwhelmed tracking all potential update locations
+
+**WORKAROUND:**
+- Pre-scope: Have LLM first identify and list all relevant locations explicitly
+- Separate identification from modification into distinct steps
+- Focus on "spots that need overwriting" not just "relevant spots"
+- Process each identified location individually rather than bulk updates
+
+**PATTERN:**
+LLMs rarely achieve perfect comprehensive cross-document updates when context exceeds ~60k tokens. ~90% of the time they miss at least some relevant locations
+
+
 ======================================================================
 ======================================================================
 
@@ -173,6 +220,12 @@ LLMs forget stateful changes like directory navigation
 - User's system configuration
 - Previous action results
 
+## 5. Large Document Processing
+- Incomplete overwrites (additions instead of replacements)
+- Cross-documentation propagation failures
+- Degraded performance at 60k+ token contexts
+- Rarely achieve perfect coverage (~90% of attempts miss some locations)
+
 
 ======================================================================
 ======================================================================
@@ -199,6 +252,18 @@ These limitations represent real failure modes to build detection for:
 
 4. **State Tracking System**
    - Maintain awareness of directory, environment changes
+
+5. **Document Scope Analyzer**
+   - Pre-identify all locations needing updates before execution
+   - Separate scoping from modification phases
+
+6. **Multi-Pass Verification System**  
+   - Use multiple LLM passes to catch missed updates
+   - Second pass specifically checks for incomplete overwrites
+
+7. **Large Document Chunking Strategy**
+   - Break documents >10k tokens into manageable segments
+   - Process updates segment-by-segment with overlap checks
 
 Each limitation here is a future test case for the system.
 
